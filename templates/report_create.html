@@ -1,0 +1,228 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Create Report{% endblock %}</title>
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0;">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color: blue; font-weight:bold"> Create Report </h1>
+    <br>
+
+<form  method="post">
+    <div class="row">
+        <div class="form-group col-xs-12" align="left" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;">
+          <span class="input-group-addon" name="herdsearchradios">
+							<input type="radio" name="type" value="animalname" checked="checked"> Animal Name
+							<input type="radio" name="type" value="eid"> EID
+							<input type="radio" name="type" value="herdname"> Herd Name
+							<input type="radio" name="type" value="eartag"> Ear Tag
+						</span>
+						<div class="row"  style="margin:20px;">
+							<label for="animalname" class="control-label col-xs-2" align="right">Animal Name</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="animalname" name="animalname" placeholder="Animal Name">
+							</div>
+							<label for="eid" class="control-label col-xs-2" align="right">EID</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="eid" placeholder="EID">
+							</div>
+							<label class="control-label col-xs-2" for="start_date" align="right">Start Date</label>
+							<div class="input-group col-xs-2">
+							   <input class="date form-control" id="start_date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+							</div>
+						</div>
+
+						<div class="row"  style="margin-bottom:20px; margin-left:20px; margin-right:20px;">
+							<label for="eartag" class="control-label col-xs-2" align="right">Ear Tag</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="eartag" placeholder="Ear Tag">
+							</div>
+							<label for="name" class="control-label col-xs-2" align="right" style="padding:10px;">Herd Name</label>
+							<div class="col-xs-2">
+								<select class="form-control" id="name"></select>
+							</div>
+							<label class="control-label col-xs-2" for="end_date" align="right">End Date</label>
+							<div class="input-group col-xs-2">
+							   <input class="date form-control" id="end_date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+							</div>
+						</div>
+						<div class="row">
+           		<div class="col-xs-2">
+								<div class="row form-control" style="margin-top:5px;">
+									<h4 style="padding-bottom:5px;" align="center">Basics</h4>
+								</div>
+								<div class="row" style="margin-top:5px;">
+									    <input type="checkbox"  class="basics">Select All<br>
+										<input type="checkbox" class="groupaddinput1" id="pasturenumber" value="pasturenumber">Pasture Number<br>
+										<input type="checkbox" class="groupaddinput1" id="sex" value="sex">Sex<br>
+										<input type="checkbox" class="groupaddinput1" id="breed" value="breed">Breed<br>
+										<input type="checkbox" class="groupaddinput1" id="height" value="height">Height<br>
+										<input type="checkbox" class="groupaddinput1" id="weight" value="weight">Weight<br>
+										<input type="checkbox" class="groupaddinput1" id="animaltype" value="animaltype">Animal Type<br>
+										<input type="checkbox" class="groupaddinput1" id="status" value="status">Status<br>
+										<input type="checkbox" class="groupaddinput1" id="herd" value="herd">Herd<br>
+										<input type="checkbox" class="groupaddinput1" id="trial" value="trial">Trial<br>
+										<input type="checkbox" class="groupaddinput1" id="breeder" value="breeder">Breeder<br>
+										<input type="checkbox" class="groupaddinput1" id="species" value="species">Species<br>
+										<input type="checkbox" class="groupaddinput1" id="currentframescore" value="currentframescore">Current Frame Score<br>
+										<input type="checkbox" class="groupaddinput1" id="damframescore" value="damframescore">Dam Frame Score<br>
+										<input type="checkbox" class="groupaddinput1" id="comments" value="comments">Comments<br>
+
+								</div>
+							</div>
+							<div class="col-xs-2">
+							    <div class="row form-control" style="margin-top:5px;">
+									<h4 style="padding-bottom:5px;" align="center">Advanced</h4>
+								</div>
+								<div class="row" style="margin-top:5px;">
+
+									    <input type="checkbox"  class="advanced">Select All<br>
+										<input type="checkbox" class="groupaddinput2" value="brand" id="brand">Brand<br>
+										<input type="checkbox" class="groupaddinput2" value="brandlocation" id="brandlocation">Brand Location<br>
+										<input type="checkbox" class="groupaddinput2" value="tattooleft" id="tattooleft">Tattoo Left<br>
+										<input type="checkbox" class="groupaddinput2" value="tattooright" id="tattooright">Tattoo Right<br>
+										<input type="checkbox" class="groupaddinput2" value="alternativeid" id="alternativeid">Alternative ID<br>
+										<input type="checkbox" class="groupaddinput2" value="registration" id="registration">Registration<br>
+										<input type="checkbox" class="groupaddinput2" value="color" id="color">Color<br>
+										<input type="checkbox" class="groupaddinput2" value="hornstatus" id="hornstatus">Horn Status<br>
+										<input type="checkbox" class="groupaddinput2" value="dam" id="dam">Dam<br>
+										<input type="checkbox" class="groupaddinput2" value="sire" id="sire">Sire<br>
+										<input type="checkbox" class="groupaddinput2" value="dob" id="dob">D.O.B<br>
+										<input type="checkbox" class="groupaddinput2" value="howacquired" id="howacquired">How Acquired<br>
+										<input type="checkbox" class="groupaddinput2" value="dateacquired" id="dateacquired">Date Acquired<br>
+										<input type="checkbox" class="groupaddinput2" value="howdisposed" id="howdisposed">How Disposed<br>
+										<input type="checkbox" class="groupaddinput2" value="datedisposed" id="datedisposed">Date Disposed<br>
+										<input type="checkbox" class="groupaddinput2" value="disposalreason" id="disposalreason">Disposal Reason<br>
+										<input type="checkbox" class="groupaddinput2" value="herdnumberlocation" id="herdnumberlocation">Herd Number Location<br>
+										<input type="checkbox" class="groupaddinput2" value="herdstatus" id="herdstatus">Herd Status<br>
+										<input type="checkbox" class="groupaddinput2" value="howconceived" id="howconceived">How Conceived<br>
+										<input type="checkbox" class="groupaddinput2" value="managementcode" id="managementcode">Management Code<br>
+										<input type="checkbox" class="groupaddinput2" value="ownerID" id="ownerID">Owner ID<br>
+										<input type="checkbox" class="groupaddinput2" value="springfall" id="springfall">Spring/Fall<br>
+										<input type="checkbox" class="groupaddinput2" value="includeinlookups" id="includeinlookups">Include in Lookups<br>
+								</div>
+							</div>
+							<div class="col-xs-2">
+							    <div class="row form-control" style="margin-top:5px;">
+									<h4 style="padding-bottom:5px;" align="center">Experiment</h4>
+								</div>
+								<div class="row" style="margin-top:5px;">
+									    <input type="checkbox"  class="experiment">Select All<br>
+										<input type="checkbox" class="groupaddinput3" id="sireframescore" value="sireframescore">Sire Frame Score<br>
+										<input type="checkbox" class="groupaddinput3" id="weanheight" value="weanheight">Wean Height<br>
+										<input type="checkbox" class="groupaddinput3" id="weanweight" value="weanweight">Wean Weight<br>
+										<input type="checkbox" class="groupaddinput3" id="weandate" value="weandate">Wean Date<br>
+										<input type="checkbox" class="groupaddinput3" id="birthweight" value="birthweight">Birth Weight<br>
+										<input type="checkbox" class="groupaddinput3" id="yearlingheight" value="yearlingheight">Yearling Height<br>
+										<input type="checkbox" class="groupaddinput3" id="yearlingweight" value="yearlingweight">Yearling Weight<br>
+										<input type="checkbox" class="groupaddinput3" id="yearlingdate" value="yearlingdate">Yearling Date<br>
+										<input type="checkbox" class="groupaddinput3" id="customweight" value="customweight">Custom Weight<br>
+										<input type="checkbox" class="groupaddinput3" id="customweightdate" value="customweightdate">Custom Weight Date<br>
+										<input type="checkbox" class="groupaddinput3" id="customheight" value="customheight">Custom Height<br>
+										<input type="checkbox" class="groupaddinput3" id="customheightdate" value="customheightdate">Custom Height Date<br>
+										<input type="checkbox" class="groupaddinput3" id="blockpen" value="blockpen">Block/Pen<br>
+										<input type="checkbox" class="groupaddinput3" id="replicate" value="replicate">Replicate<br>
+										<input type="checkbox" class="groupaddinput3" id="backfat" value="backfat">Back Fat<br>
+										<input type="checkbox" class="groupaddinput3" id="treatment" value="treatment">Treatment<br>
+										<input type="checkbox" class="groupaddinput3" id="adj205w" value="adj205w">Adj205w<br>
+										<input type="checkbox" class="groupaddinput3" id="adj205h" value="adj205h">Adj205h<br>
+										<input type="checkbox" class="groupaddinput3" id="weanframescore" value="weanframescore">Wean Frame Score<br>
+										<input type="checkbox" class="groupaddinput3" id="ageatwean" value="ageatwean">Age at Wean<br>
+										<input type="checkbox" class="groupaddinput3" id="adjyearlingw" value="adjyearlingw">Adj Yearling Weight<br>
+										<input type="checkbox" class="groupaddinput3" id="adjyearlingh" value="adjyearlingh">Adj Yearling Height<br>
+										<input type="checkbox" class="groupaddinput3" id="yearlingframescore" value="yearlingframescore">Yearling Frame Score<br>
+										<input type="checkbox" class="groupaddinput3" id="ageatyearling" value="ageatyearling">Age at Yearling<br>
+								</div>
+							</div>
+							<div class="col-xs-2">
+							    <div class="row form-control" style="margin-top:5px;">
+									<h4 style="padding-bottom:5px;" align="center">Reproduction</h4>
+								</div>
+								<div class="row" style="margin-top:5px;">
+									    <input type="checkbox"  class="reproduction">Select All<br>
+										<input type="checkbox" class="groupaddinput4" id="breeding" value="breeding">Breeding<br>
+										<input type="checkbox" class="groupaddinput4" id="pregnancy" value="pregnancy">Pregnancy<br>
+										<input type="checkbox" class="groupaddinput4" id="pasturenumberreproduction" value="pasturenumberreproduction">Pasture Number Reproduction<br>
+										<input type="checkbox" class="groupaddinput4" id="calfatside" value="calfatside">Calf at Side<br>
+										<input type="checkbox" class="groupaddinput4" id="totalcalves" value="totalcalves">Total Calves<br>
+										<input type="checkbox" class="groupaddinput4" id="previouscalf" value="previouscalf">Previous Calf<br>
+										<input type="checkbox" class="groupaddinput4" id="damageatbirth" value="damageatbirth">Dam Age at Birth.<br>
+										<input type="checkbox" class="groupaddinput4" id="currentcalf" value="currentcalf">Current Calf<br>
+										<input type="checkbox" class="groupaddinput4" id="calfdob" value="calfdob">DOB<br>
+										<input type="checkbox" class="groupaddinput4" id="calfsex" value="calfsex">Calf Sex<br>
+										<input type="checkbox" class="groupaddinput4" id="calfbirthweight" value="calfbirthweight">Calf Birth Weight<br>
+										<input type="checkbox" class="groupaddinput4" id="damcalvingdisposition" value="damcalvingdisposition">Dam Calving Disposition<br>
+										<input type="checkbox" class="groupaddinput4" id="calvingease" value="calvingease">Calving Ease<br>
+										<input type="checkbox" class="groupaddinput4" id="udderscore" value="udderscore">Udder Score<br>
+										<input type="checkbox" class="groupaddinput4" id="comments" value="comments">Comments<br>
+										<input type="checkbox" class="groupaddinput4" id="damdisposition" value="damdisposition">Dam Disposition<br>
+										<input type="checkbox" class="groupaddinput4" id="cowframescore" value="cowframescore">Cow Frame Score<br>
+										<input type="checkbox" class="groupaddinput4" id="cowwtbreeding" value="cowwtbreeding">Cow Wt Breeding<br>
+										<input type="checkbox" class="groupaddinput4" id="cowhtbreeding" value="cowhtbreeding">Cow Ht Breeding<br>
+										<input type="checkbox" class="groupaddinput4" id="cowwtweaning" value="cowwtweaning">Cow Wt Weaning<br>
+										<input type="checkbox" class="groupaddinput4" id="cowhtweaning" value="cowhtweaning">Cow Ht Weaning<br>
+										<input type="checkbox" class="groupaddinput4" id="cowwtcalving" value="cowwtcalving">Cow Wt Calving<br>
+										<input type="checkbox" class="groupaddinput4" id="cowhtcalving" value="cowhtcalving">Cow Ht Calving<br>
+										<input type="checkbox" class="groupaddinput4" id="bcsweaning" value="bcsweaning">B.C.S Weaning<br>
+										<input type="checkbox" class="groupaddinput4" id="bcscalving" value="bcscalving">B.C.S Calving<br>
+										<input type="checkbox" class="groupaddinput4" id="bcsbreeding" value="bcsbreeding">B.C.S Breeding<br>
+										<input type="checkbox" class="groupaddinput4" id="customcowwt" value="customcowwt">Custom Cow Wt<br>
+										<input type="checkbox" class="groupaddinput4" id="customcowht" value="customcowht">Custom Cow Ht<br>
+										<input type="checkbox" class="groupaddinput4" id="bulldisposition" value="bulldisposition">Bull Disposition<br>
+										<input type="checkbox" class="groupaddinput4" id="bullframescore" value="bullframescore">Bull Frame Score<br>
+										<input type="checkbox" class="groupaddinput4" id="bullwtprebreeding" value="bullwtprebreeding">Bull Wt Pre-Breeding<br>
+										<input type="checkbox" class="groupaddinput4" id="bullhtprebreeding" value="bullhtprebreeding">Bull Ht Pre-Breeding<br>
+										<input type="checkbox" class="groupaddinput4" id="fertility" value="fertility">Fertility<br>
+										<input type="checkbox" class="groupaddinput4" id="mobility" value="mobility">Mobility<br>
+										<input type="checkbox" class="groupaddinput4" id="conc" value="conc">Conc.<br>
+										<input type="checkbox" class="groupaddinput4" id="deadabnormal" value="deadabnormal">Dead/Abnormal<br>
+								</div>
+							</div>
+							<div class="col-xs-2">
+							    <div class="row form-control" style="margin-top:5px;">
+									<h4 style="padding-bottom:5px;" align="center">Medical</h4>
+								</div>
+								<div class="row" style="margin-top:5px;">
+									    <input type="checkbox"  class="medical">Select All<br>
+										<input type="checkbox" class="groupaddinput5" id="reasonforprocedure" value="reasonforprocedure">Reason for Procedure<br>
+										<input type="checkbox" class="groupaddinput5" id="notificationofvmo" value="notificationofvmo">Notification of VMO<br>
+										<input type="checkbox" class="groupaddinput5" id="recommendationofvmo" value="recommendationofvmo">Recommendation of VMO<br>
+										<input type="checkbox" class="groupaddinput5" id="treatmentprotocol" value="treatmentprotocol">Treatment Protocol<br>
+										<input type="checkbox" class="groupaddinput5" id="animallocationpreresolution" value="animallocationpreresolution">Animal Location Pre-Resolution<br>
+										<input type="checkbox" class="groupaddinput5" id="followupexam" value="followupexam">Follow-up Exam<br>
+										<input type="checkbox" class="groupaddinput5" id="resolution" value="resolution">Resolution<br>
+										<input type="checkbox" class="groupaddinput5" id="dateoffollowupexam" value="dateoffollowupexam">Date of follow-up Exam<br>
+										<input type="checkbox" class="groupaddinput5" id="animallocation" value="animallocation">Animal Location<br>
+										<input type="checkbox" class="groupaddinput5" id="dateofaction" value="dateofaction">Date of Action<br>
+								</div>
+							</div>
+							<div class="col-xs-2">
+							    <div class="row form-control" style="margin-top:5px;">
+									<h4 style="padding-bottom:5px;" align="center">Grazing</h4>
+								</div>
+								<div class="row" style="margin-top:5px;">
+									    <input type="checkbox"  class="grazing">Select All<br>
+										<input type="checkbox" class="groupaddinput6" id="pastureacres" value="pastureacres">Pasture Acres<br>
+										<input type="checkbox" class="groupaddinput6" id="animalspresent" value="animalspresent">Animals Present<br>
+										<input type="checkbox" class="groupaddinput6" id="datein" value="datein">Date In<br>
+										<input type="checkbox" class="groupaddinput6" id="dateout" value="dateout">Date Out<br>
+										<input type="checkbox" class="groupaddinput6" id="stockingrate" value="stockingrate">Stocking Rate<br>
+								</div>
+
+
+							</div>
+							</div>
+
+	    </div>
+    </div>
+	</form>
+	<div style="margin:10px" align="center"><span><button type="button" id="create_report" class="btn btn-primary btn-lg">Submit</button></span></div>
+</div>
+	{% endblock %}
+{% block Report %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/report_create.js')}}"></script> {% endblock %}
+</body>
+</html>

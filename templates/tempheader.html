@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- FontAwesome Min CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Flatpickr CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+	<!-- Flatpickr Date Plugin -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/filter-control/bootstrap-table-filter-control.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/sticky-header/bootstrap-table-sticky-header.css" />
+	<!--Float Panel Plugin-->
+	<script type="text/javascript" src="{{url_for('static', filename= 'js/float-panel.js')}}"></script>
+	<style>
+		/*body {margin:0;font-family:Arial}*/
+		.main {
+			margin-left: 15%;
+			/* Same as the width of the sidenav */
+			height: auto;
+			width: auto;
+			/*padding: 0px 10px;*/
+		}
+
+		.date {
+			background-color: #fff;
+		}
+
+		.topnav {
+			overflow: hidden;
+			background-color: #333;
+			margin-left: 15%;
+			margin-bottom: 0px;
+		}
+
+		.topnav-right {
+			float: right;
+		}
+
+		.form-group {
+			margin-bottom: 25px;
+		}
+
+		.topnav a {
+			float: left;
+			display: block;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 15px;
+		}
+
+		.topnav a.active {
+			background-color: #71E1F7;
+			color: white;
+		}
+
+		.topnav .icon {
+			display: none;
+		}
+
+
+		@media screen and (max-width: 600px) {
+
+			.topnav a:not(:first-child),
+			.dropdown .dropbtn {
+				display: none;
+			}
+
+			.topnav a.icon {
+				float: right;
+				display: block;
+			}
+		}
+
+
+		body,
+		html {
+			height: 100%;
+			margin: 0;
+			font-family: Arial
+		}
+
+		/* remove outer padding */
+		.main .row {
+			padding: 0px;
+			margin: 0px;
+		}
+
+		/*Remove rounded coners*/
+
+		nav.sidebar.navbar {
+			border-radius: 0px;
+		}
+
+		nav.sidebar,
+		.main {
+			-webkit-transition: margin 200ms ease-out;
+			-moz-transition: margin 200ms ease-out;
+			-o-transition: margin 200ms ease-out;
+			transition: margin 200ms ease-out;
+		}
+
+		/* Add gap to nav and right windows.*/
+		.main {
+			padding: 10px 10px 0 10px;
+		}
+
+		/* .....NavBar: Icon only with coloring/layout.....*/
+
+		/*small/medium side display*/
+		@media (min-width: 768px) {
+
+			/*Allow main to be next to Nav*/
+			.main {
+				position: absolute;
+				width: calc(100% - 40px);
+				/*keeps 100% minus nav size*/
+				margin-left: 40px;
+				float: right;
+			}
+
+			/*lets nav bar to be showed on mouseover*/
+			nav.sidebar:hover+.main {
+				margin-left: 220px;
+			}
+
+			/*Center Brand*/
+			nav.sidebar.navbar.sidebar>.container .navbar-brand,
+			.navbar>.container-fluid .navbar-brand {
+				margin-left: 0px;
+			}
+
+			/*Center Brand*/
+			nav.sidebar .navbar-brand,
+			nav.sidebar .navbar-header {
+				text-align: center;
+				width: 100%;
+				margin-left: 0px;
+			}
+
+			/*Center Icons*/
+			nav.sidebar a {
+				padding-right: 13px;
+			}
+
+			/*adds border top to first nav box */
+			nav.sidebar .navbar-nav>li:first-child {
+				border-top: 1px #e5e5e5 solid;
+			}
+
+			/*adds border to bottom nav boxes*/
+			nav.sidebar .navbar-nav>li {
+				border-bottom: 1px #e5e5e5 solid;
+			}
+
+			/* Colors/style dropdown box*/
+			nav.sidebar .navbar-nav .open .dropdown-menu {
+				position: static;
+				float: none;
+				width: auto;
+				margin-top: 0;
+				background-color: transparent;
+				border: 0;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+
+			/*allows nav box to use 100% width*/
+			nav.sidebar .navbar-collapse,
+			nav.sidebar .container-fluid {
+				padding: 0 0px 0 0px;
+			}
+
+			/*colors dropdown box text */
+			.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+				color: #777;
+			}
+
+			/*gives sidebar width/height*/
+			nav.sidebar {
+				width: 220px;
+				height: 100%;
+				margin-left: -160px;
+				float: left;
+				z-index: 8000;
+				margin-bottom: 0px;
+			}
+
+			/*give sidebar 100% width;*/
+			nav.sidebar li {
+				width: 100%;
+			}
+
+			/* Move nav to full on mouse over*/
+			nav.sidebar:hover {
+				margin-left: 0px;
+			}
+
+			/*for hiden things when navbar hidden*/
+			.forAnimate {
+				opacity: 0;
+			}
+		}
+
+		/* .....NavBar: Fully showing nav bar..... */
+
+		@media (min-width: 1330px) {
+
+			/*Allow main to be next to Nav*/
+			.main {
+				width: calc(100% - 220px);
+				/*keeps 100% minus nav size*/
+				margin-left: 220px;
+			}
+
+			/*Show all nav*/
+			nav.sidebar {
+				margin-left: 0px;
+				float: left;
+			}
+
+			/*Show hidden items on nav*/
+			nav.sidebar .forAnimate {
+				opacity: 1;
+			}
+		}
+
+		nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover,
+		nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+			color: black;
+			background-color: transparent;
+		}
+
+		nav:hover .forAnimate {
+			opacity: 1;
+		}
+
+		section {
+			padding-left: 15px;
+		}
+
+
+
+		@media screen and (max-width: 600px) {
+			.topnav.responsive {
+				position: relative;
+			}
+
+			.topnav.responsive .icon {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+
+			.topnav.responsive a {
+				float: none;
+				display: block;
+				text-align: left;
+			}
+
+			.topnav.responsive .dropdown {
+				float: none;
+			}
+
+			.topnav.responsive .dropdown-content {
+				position: relative;
+			}
+
+			.topnav.responsive .dropdown .dropbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+			}
+		}
+
+		.dropdown-menu>li>a {
+			color: #000;
+		}
+	</style>
+	<style>
+		.sidenav1 {
+			height: 100%;
+			width: 15%;
+			position: relative;
+			z-index: 1;
+			top: 0px;
+			left: 0;
+			background-color: #333;
+			overflow-x: hidden;
+		}
+
+		.navbar-header {
+			float: none !important;
+			text-align: left;
+		}
+
+		a {
+			/*background-color: #333;*/
+			/*text-align: center;*/
+			text-decoration: none;
+			font-size: 15px;
+		}
+
+		.panel {
+			border: none;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		.panel-default>.panel-heading {
+			background-image: linear-gradient(to bottom, #333333 0, #333333 100%);
+			color: #fff;
+			background-color: #00436a;
+			border-color: #ddd;
+		}
+
+		.panel-group .panel+.panel {
+			margin-top: 0px;
+		}
+
+		.panel-collapse {
+			background-color: #333;
+		}
+
+		.glyphicon {
+			margin-right: 10px;
+		}
+
+
+		ul.list-group {
+			margin: 0px;
+		}
+
+		ul.bulletlist li {
+			list-style: disc;
+		}
+
+
+		ul.list-group li a {
+			display: block;
+			padding: 5px 0px 5px 15px;
+			text-decoration: none;
+		}
+
+		ul.list-group li {
+			border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+		}
+
+
+		ul.list-group li a:hover,
+		ul li a:focus {
+			color: #fff;
+			background-color: #00436a;
+		}
+
+		.panel-title a:hover,
+		.panel-title a:active,
+		.panel-title a:focus,
+		.panel-title .open a:hover,
+		.panel-title .open a:active,
+		.panel-title .open a:focus {
+			text-decoration: none;
+			color: #fff;
+		}
+
+		.panel-title>.small,
+		.panel-title>.small>a,
+		.panel-title>a,
+		.panel-title>small,
+		.panel-title>small>a {
+			display: block;
+		}
+
+		@media (min-width: 768px) {
+			.navbar-collapse.collapse {
+				display: block !important;
+				height: auto !important;
+				padding-bottom: 0;
+				overflow: visible !important;
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+		}
+
+		@media (min-width: 992px) {
+			.menu-hide {
+				display: none;
+			}
+
+		}
+
+		.menu-hide .panel-default>.panel-heading {
+			color: #fff;
+			background-color: #8e8c8c;
+			border-color: #ddd;
+		}
+
+		.w200 .th-inner {
+			width: 200px;
+		}
+
+		.w250 .th-inner {
+			width: 250px;
+		}
+
+		.w100 .th-inner {
+			width: 100px;
+		}
+
+		.w150 .th-inner {
+			width: 150px;
+		}
+
+		.w500 .th-inner {
+			width: 500px;
+		}
+
+		.modal-header {
+			background-color: #FFC300;
+		}
+
+		.modal-body {
+			background-color: #E3E3AB;
+
+		}
+
+		.modal-footer {
+			background-color: #E3E3AB;
+		}
+
+		/*Background*/
+		.layered-image {
+			background: url("/static/images/bg-pattern.jpg");
+		}
+
+		/*custom button style*/
+		.light-btn,
+		.light-btn:active,
+		.light-btn:visited,
+		.light-btn:focus {
+			background-color: #FFC300;
+			border: 2px solid black;
+			font-weight: bold;
+		}
+
+		.light-btn:hover {
+			background-color: #CECF75;
+		}
+
+		/*Background*/
+
+
+			{
+			% block style %
+		}
+
+			{
+			% endblock %
+		}
+	</style>
+
+
+
+
+	<title>{% block title %}Homepage{% endblock %}</title>
+</head>
+
+<body class="layered-image">
+	<nav class="navbar navbar-inverse" style="margin-bottom:0px;">
+		<div class="container-fluid" style="background-color:#FFC300;">
+			<div class="navbar-header" style="background-color:#FFC300;">
+				<span class="navbar-brand"><img src="/static/images/USDA-Logo.png"></span>
+				<h1 class="navbar-brand" style="color:black; font-weight:bold">Grazinglands Research Laboratory -
+					Web-based Animal Management System (GRL-WAMS)</h1>
+			</div>
+		</div>
+	</nav>
+
+	<div class="main">
+		<div id="Notification_area">
+			<div class="container-fluid">
+				<div style="width:50%; margin:0px auto;" align="center">
+					{% with msgs = get_flashed_messages() %}
+					{% if msgs %}
+					{% for msg in msgs %}
+					<div class="alert alert-info">
+						{{ msg }}
+					</div>
+					{% endfor %}
+					{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+		{% block main %}
+		<h2>Top Navigation Example</h2>
+		<p>Some content..</p>
+		{% endblock %}
+	</div>
+
+
+	{% if session ['logged_in'] %}
+	<nav class="navbar navbar-inverse sidebar float-panel" role="navigation" style="margin-top:0px;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-sidebar-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!--<a class="navbar-brand" href="#">Brand</a>-->
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="/tempsearchpage">Home<span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal <span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-piggy-bank"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="/animal/list">Animal List</a></li>
+							<li><a href="/animal/add">Add Animal</a></li>
+							<li><a href="/animal/update">Update Animal</a></li>
+							<li><a href="/cow/list"> cow list</a></li>
+							<li><a href="/upload/file"> Upload file</a></li>
+							<li><a href="/Demo">Demo</a></li>
+							<!-- <li><a href="/Add New Records For Demo">Add New Records For Demo</a></li> -->
+							<li><a href="/DemoDataInBetweenDates">Data Between Dates</a></li>
+							<li><a href="/Standard/Queries">StandardQueries</a></li>
+							
+
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Experiment <span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="/experiment/add">Add Experiment</a></li>
+							<li><a href="/experiment/list">Experiment List</a></li>
+							<li><a href="/experiment/update">Update Experiment</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-calendar"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/inventory/formulary">Formulary</a></li>
+							<li><a class="navlink" href="/inventory/pasture">Pasture Management</a></li>
+							<!--<li><a class="navlink" href="/inventory/procedure">Procedure</a></li>-->
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Inspection<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/inspection/submit">Submit Inspection Report</a></li>
+							<li><a class="navlink" href="/inspection/view">View Inspection Reports</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reproduction<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-object-align-bottom"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/reproduction/calfadd">Add Calf</a></li>
+							<li><a class="navlink" href="/reproduction/listview">Calf Records</a></li>
+							<li><a class="navlink" href="/reproduction/calfview">Update Calf</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Health Records<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/health/list"> Health Record List</a></li>
+							<li><a class="navlink" href="/health/add">Add Health Record</a></li>
+							<!--<li><a class="navlink" href="/health/update">Update Health Record</a></li>-->
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-check"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/report/create">Create Report</a></li>
+							<li><a class="navlink" href="/report/list">Report List</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Herd<span class="caret"></span><span
+								style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/herd/create">Create Herd</a></li>
+							<li><a class="navlink" href="/herd/view">Update Herd</a></li>
+							<!--<li><a class="navlink" href="/herd/grazing">Grazing</a></li>-->
+						</ul>
+					</li>
+					{% if session['roles'] == "ADMIN" or session['roles'] == "SUPERUSER" %}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">User Management<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a class="navlink" href="/user/list">Users List</a></li>
+							<li><a class="navlink" href="/user/add">Add User</a></li>
+						</ul>
+					</li>
+					{% endif %}
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tables<span
+								class="caret"></span><span style="font-size:16px;"
+								class="pull-right hidden-xs showopacity glyphicon glyphicon-th"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="/tables">View tables</a></li>
+						</ul>
+					</li>
+					
+					{% if session ['logged_in'] %}
+					<li class="dropdown"><a class="dropdown-toggle" id="email"
+							data-toggle="dropdown">{{session['email']}}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/UserInfo">User Info</a></li>
+							<li><a href="/ChangePassword">Change Password</a></li>
+						</ul>
+					</li>
+					<li><a>{{session['roles']}}</a></li>
+					<li><a href="/logout"> <span class="glyphicon glyphicon-log-out"></span> Signout &nbsp;</a></li>
+					{% else %}
+					<li><a href="/register"> <span class="glyphicon glyphicon-user"></span> Register &nbsp;</a></li>
+					{% endif %}
+				</ul>
+
+			</div>
+
+		</div>
+		</div>
+	</nav>
+	{% endif %}
+	<script>
+		$(".date").flatpickr({});
+	</script>
+
+	<!-- bootstrap table imports -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+
+	<!-- Our own headerscript file -->
+	<script type="text/javascript" src="{{url_for('static', filename= 'js/tempheaderscripts.js')}}"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/popper.min.js"></script> -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+
+	<!-- Multiple select plugin local import -->
+	<script type="text/javascript" src="{{url_for('static', filename= 'js/multiselect.js')}}"></script>
+	<!-- <script type = "text/javascript" src="{{url_for('static', filename= 'js/flatpickr.min.js')}}"></script> -->
+
+	<!-- CSV Upload Helper JavaScript File -->
+	<script type="text/javascript" src="{{url_for('static', filename= 'js/jquery-csv.js')}}"></script>
+
+	<!-- Notify Plugin Import -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+
+	<!-- bootstrap table imports -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+	<!-- Latest compiled and minified Locales -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-en-US.min.js"></script>
+
+	<!-- bootstrap-Tables Plugins -->
+	<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+	<script
+		src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/extensions/export/bootstrap-table-export.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/toolbar/bootstrap-table-toolbar.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
+
+
+	{% block imports %}
+	{% endblock %}
+</body>
+
+</html>

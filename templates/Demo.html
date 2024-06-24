@@ -1,0 +1,211 @@
+`{% extends "tempheader.html" %}
+
+<html>
+
+<head>
+	<title>{% block title %}Animal List{% endblock %}</title>
+	{% block style %}
+
+	 #table{
+	background: url(paper.gif);
+	background-position: left top;
+	background-repeat: repeat;
+	background-color:#F3F1DA;
+	padding: 20px;
+	width: 100px;
+	height: 100px;
+	border:4px solid black;
+	color:black;
+	cursor:pointer
+	}
+
+
+	.table tbody tr:hover td, .table tbody tr:hover th {
+	background-color:#67C699;
+	}
+	.no-filter-control{
+	border-bottom: 3px solid black;
+	height:auto!important;
+	}
+
+	tr,th, td {
+	border: 1px black;
+
+	
+
+
+	{% endblock %} 
+	}
+
+	
+<body>
+	{% block main %}
+	<div class="container" style="padding:0;">
+		<div id="Notification area"></div>
+		<h1 align="center" style="color:blue; font-weight:bold">Demo</h1>
+		<br>
+		<h5 style="font-weight: bold;">Click on '+' icon to add new records</h5>
+		
+		<!-- <div id="toolbar" class="btn-group" >
+                <button type="button" id="UploadCSV" class="btn btn-default"><i class="glyphicon gly>
+        </div> -->
+		<div id="toolbar" class="btn-group" >
+			<!-- demo upload csv change starts here. added following button to facilitate uploading csv files-->
+			<button type="button" id="demoUploadCSV" class="btn btn-default"><i class="glyphicon glyphicon-plus" ></i>Upload CSV</button>
+			<!-- demo upload csv change ends here-->
+			<button type="button" id="NewRecords" class="btn btn-default"><i class="glyphicon glyphicon-plus" ></i>Add new Records</button>
+			
+		</div>
+	</div>
+	<!--<div>
+
+		<a target="_blank" href="/static/pdf_files/10 26 2020 JN to JT @ OSU_CSD SS 01 22 2014 Cow Record 2014.csv"
+			style="color:blue">
+	</div> -->
+	<table id="table" data-search="true" data-pagination="true" data-show-refresh="true" data-show-columns="true"
+		data-click-to-select="true" data-show-export="true" data-filter-control="true" class="table table-dark">
+
+		<thead>
+			<tr>
+
+				<th data-field="EID" class="w130">EID</th>
+				<th data-field="Date_Registered" class="w130">Date_Registration</th>
+				<th data-field="Weight" class="w130">Weight(lbs)</th>
+				<th data-field="Type" class="w130">Type</th>
+				<th data-field="Date_scanned" class="w130">Date_scanned</th>
+				
+			</tr>
+		</thead>
+	</table>
+
+	<!--<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+	<ul id="output"></ul> -->
+
+	<!--<div class="modal fade" id="AnimalEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Edit this
+							Animal?</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+							style="float:right;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<fieldset disabled>
+						<div class="modal-body">
+							<form class="form-horizontal" style="margin-top:15px;">
+								<input type="text" name="Animal_Data" id="Animal_Data" value="" />
+							</form>
+						</div>
+					</fieldset>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="button" id="Animal_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="AnimalDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Delete this
+							Animal?</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+							style="float:right;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<fieldset disabled>
+						<div class="modal-body">
+							<h2 id="Delete_Animal">
+								<h2>
+						</div>
+					</fieldset>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+						<button type="button" id="Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>-->
+	<div class="modal fade" id="NewRecordsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Want to
+							Upload CSV?</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+							style="float:right;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container" style="min-height:100% width:80%">
+							<input type="file" style="padding-bottom:10px;" id="fileUpload" />
+							<input type="button" id="upload" value="Upload" />
+						</div>
+						<div id="dvCSV"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="Upload_Done" class="btn btn-primary"
+							data-dismiss="modal">Done?</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- demo upload csv change starts here-->
+	
+	<div class="modal fade" id="UploadCSVDemoModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="ModalDemoLabel" style="font-weight:bold; float:left;">Want to Upload CSV?</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container" style="min-height:100% width:80%">
+							<input type="file" style="padding-bottom:10px;" id="demoFileUpload" />
+							<input type="button" id="uploadDemo" value="Upload" />
+						</div>
+						<div id="dvDemoCSV"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="demoUpload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+					</div>
+				</div>
+			
+		</div>
+	</div>
+	
+	
+	<!-- demo upload csv change ends here -->
+	
+	
+	</div>
+	{% endblock %}
+
+	{% block animal %} class="panel-collapse collapse in" {% endblock %}
+	{% block imports %}
+	<script type="text/javascript" src="{{url_for('static', filename= 'js/demo.js')}}"></script>{% endblock %}
+
+
+</body>
+
+</html>

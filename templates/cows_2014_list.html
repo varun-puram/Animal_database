@@ -1,0 +1,200 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Animal List{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+border:4px solid black;
+    color:black;
+    cursor:pointer
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+}
+.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+}
+
+tr,th, td {
+    border: 1px black;
+
+
+
+
+{% endblock %}
+
+
+<body>
+	{% block main %}
+        <div class="container" style="padding:0;">
+        <div id="Notification area"></div>
+<h1 align="center" style="color:blue; font-weight:bold">COWS_LIST_2014</h1>
+<br>
+       <!-- <h5 style="font-weight: bold;">Click on '+' icon to upload csv files.</h5> -->
+       <!-- <h5 style="font-weight: bold;">Select a record to edit or delete,download the data using exp.</h5> -->
+
+        <!-- <div id="toolbar" class="btn-group" >
+                <button type="button" id="UploadCSV" class="btn btn-default"><i class="glyphicon gly>
+        </div> -->
+          </div>
+        <div>
+        
+        <a target="_blank" href="/static/pdf_files/10 26 2020 JN to JT @ OSU_CSD SS 01 22 2014 Cow Record 2014.csv" style="color:blue">
+        </div>
+        <table id="table"
+                data-search="true"
+                data-pagination="true"
+                data-show-refresh="true"
+                data-show-columns="true"
+                data-click-to-select="true"
+                data-show-export="true"
+                data-filter-control="true"
+            class="table table-dark"
+        >
+
+                <thead >
+                        <tr>
+                        	
+                        	<th data-field="eid" class="w130">EID</th>	
+				<th data-field="fallpas" class="w130">Fall Pass#</th>
+				<th data-field="cowyr" class="w130">Cow Year</th>
+				<th data-field="cowno" class="w130">Cow NO</th>
+				<th data-field="cowbrd" class="w130">Cow BRD</th>
+				<th data-field="type1" class="w130">Type1</th>
+				<th data-field="origin" class="w130">Origin</th>
+				<th data-field="sireyr" class="w130">SirEyr</th>
+				<th data-field="sireno" class="w130">SirEno</th>
+				<th data-field="damno" class="w130">Damno</th>
+				<th data-field="srvsirbrd" class="w130">Srvsirbrd</th>
+				<th data-field="srvsirno" class="w130">Srvsirno</th>
+				<th data-field="project" class="w130">Project</th>
+				<th data-field="falldate" class="w130">Fall Date</th>
+				<th data-field="fallwt" class="w130">Fall Wt</th>
+				<th data-field="falldisp" class="w130">Fall-Disp</th>
+				<th data-field="fallhgttp" class="w130">FallHgttp</th>
+				<th data-field="fallhgtlz" class="w130">FallHgtlz</th>
+				<th data-field="fallbcs1" class="w130">FallBcs1</th>
+				<th data-field="fallbcs2" class="w130">FallBcs2</th>
+				<th data-field="preg" class="w130">Preg</th>
+				<th data-field="fallcomment" class="w130">Fall Comment</th>
+				<th data-field="windate" class="w130">Windate</th>
+				<th data-field="winwt" class="w130">WinWt/th>
+				<th data-field="windisp" class="w130">Windisp</th>
+				<th data-field="winbcs1" class="w130">Winbcs1</th>
+				<th data-field="winbcs2" class="w130">Winbcs2</th>
+				<th data-field="sprdate" class="w130">Sprdate</th>
+				<th data-field="sprwt" class="w130">Sprwt</th>
+				<th data-field="sprbcs1" class="w130">Sprbcs1</th>
+				<th data-field="sprbcs2" class="w130">Sprbcs2</th>
+				<th data-field="sumdate" class="w130">Sumdate</th>
+				<th data-field="sumwt" class="w130">SumWt</th>
+				<th data-field="sumdisp" class="w130">SumDisp</th>
+				<th data-field="sumbcs1" class="w130">Sumbcs1</th>
+				<th data-field="sumbcs2" class="w130">Sumbcs2</th>
+				<th data-field="cullreason" class="w130">Cull Reason</th>
+				<th data-field="herd" class="w130">Herd</th>
+				<th data-field="wt0113" class="w130">Wt0113</th>
+				<th data-field="cowwtbr" class="w130">Cowwtbr</th>					
+
+                       </tr>
+                </thead>
+        </table>
+        
+        <!-- <button type="button" class="btn btn-primary btn-lg" id="Edit" >Edit</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete" >Delete</button>
+	<ul id="output"></ul> -->
+
+	<div class="modal fade" id="AnimalEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Edit this Animal?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <form class = "form-horizontal" style="margin-top:15px;">
+						<input type="text" name="Animal_Data" id="Animal_Data" value=""/>
+					  </form>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Animal_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="AnimalDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Delete this Animal?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <h2 id="Delete_Animal"><h2>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Want to Upload CSV?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<div class="container" style="min-height:100% width:80%">
+					<input type="file" style="padding-bottom:10px;" id="fileUpload"/>
+					<input type="button" id="upload" value="Upload" />
+				</div>
+				<div id="dvCSV"></div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Upload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+	{% endblock %}
+        
+{% block animal %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/Cows_2014_list.js')}}"></script>{% endblock %}   
+
+
+</body>
+</html>
+
+

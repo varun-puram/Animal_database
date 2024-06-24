@@ -1,0 +1,3 @@
+AnimalID,animaltype,birthweight,birthweightadj,sireframescore,bcsrecent,bcsprevious,bcsdifference,damweightatwean,weandate,weangpd,weanheight,weanweight,weanwda,weanweightdate,adj205h,adj205w,weanframescore,ageatwean,yearlingheight,yearlingdate,yearlingweight,adjyearlingh,adjyearlingw,yearlingframescore,ageatyearling,customweight,customweightdate,customheight,customheightdate,currentwtcow,adj365dht,currentwtheifer,backfat,treatment,blockpen,replicate,email_id
+1,Bull,0,0,0,0,0,0,0,1/1/1960,0,0,0,0,1/1/1960,0,0,0,0,0,1/1/1960,0,0,0,0,0,0,1/1/1960,0,1/1/1960,0,0,0,0,0,0,0,test
+2,Bull,0,0,0,0,0,0,0,1/1/1960,0,0,0,0,1/1/1960,0,0,0,0,0,1/1/1960,0,0,0,0,0,0,1/1/1960,0,1/1/1960,0,0,0,0,0,0,0,test

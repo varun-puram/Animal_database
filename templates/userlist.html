@@ -1,0 +1,161 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}User Management{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+
+{% endblock %}
+</head>
+<body>
+{% block main %}
+<div  class = "container">
+    {% if session['roles']=="SUPERUSER" or session['roles']=="ADMIN" %}
+    <h1 align="center" style="color: blue; font-weight:bold">Users' List</h1>
+    <table id="table" data-search="true" data-pagination="true" data-show-refresh="true" data-show-columns="true" data-show-export="true" data-filter-control="true" data-click-to-select="true">
+		<thead>
+			<tr>
+				<th data-field="state" data-radio="true" id="selectall"></th>
+				<th data-sortable="true" data-field="first_name">First Name</th>
+				<th data-sortable="true" data-field="last_name">Last Name</th>
+				<th data-field="email_id" data-filter-control="input">Email</th>
+				<th data-field="roles">Roles</th>
+				<th data-field="registered_at">Register Date</th>
+			</tr>
+		</thead>
+	</table>
+    <button type="button" class="btn btn-info" id="Add">Add</button>
+	<button type="button" class="btn btn-primary" id="Edit">Edit</button>
+	<button type="button" class="btn btn-danger" id="Delete">Delete</button>
+
+
+	<div class="modal fade" id="UserAddModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Add new User</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+                <form  action ="/register"  method ="POST">
+                    <div  class = "form-group" >
+                       <label> First Name: </label >
+                       <input  type = "text"  class = "form-control"  name = "name">
+                    </div>
+                    <div  class = "form-group" >
+                       <label> Last Name: </label >
+                       <input  type = "text"  class = "form-control"  name = "last_name">
+                    </div>
+                    <div class="form-group">
+                        <label>Date:</label>
+                        <input type="text" class="date form-control" name="registered_at">
+                    <div  class = "form-group" >
+                       <label> Email: </label >
+                       <input  type ="email"  class = "form-control"  name = "email">
+                    </div>
+                    <div  class = "form-group">
+                       <label > Password: </ label>
+                       <input  type ="password"  class ="form-control"  name ="password">
+                    </div >
+                    <div class="form-group">
+                        <label>Roles:</label>
+        				  <select class="form-control" id="Role" name="roles">
+        					<option value=""></option>
+        					<option value="SUPERUSER">SUPERUSER</option>
+        					<option value="ADMIN">ADMIN</option>
+        					<option value="HERDSMEN">HERDSMEN</option>
+        					<option value="MEDIC">MEDIC</option>
+        					<option value="IACUC">IACUC</option>
+        				  </select>
+        			</div>
+    				<div  class ="form-group" >
+                       <button  class ="btn btn-primary"> Register </button >
+                    </div>
+                 </form>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "User_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	</div>
+    <div class="modal fade" id="UserEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit this User?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+                <label for="user_email" class="control-label col-xs-1">User</label>
+				<div class="col-xs-3">
+					<input type="text" class="form-control" id="user_email" name="User" disabled>
+				</div>
+				<label for="Role_Edit">Roles:</label>
+				  <select class="form-control" id="Role_Edit">
+					<option value=""></option>
+					<option value="SUPERUSER">SUPERUSER</option>
+					<option value="ADMIN">ADMIN</option>
+					<option value="HERDSMEN">HERDSMEN</option>
+					<option value="MEDIC">MEDIC</option>
+					<option value="IACUC">IACUC</option>
+				  </select>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "User_Edit_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+    {% else %}
+        You dont have access to user management.
+        Please contact the Systems Administrator.
+    {% endif %}
+</div >
+</div>
+{% endblock %}
+
+{% block User %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/userlist.js')}}"></script>{% endblock %}
+</body>
+</html>

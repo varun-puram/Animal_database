@@ -1,0 +1,155 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}View Herd{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0px;">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color:blue; font-weight:bold"> Herd List</h1>
+	<br>
+	<h5 style="font-weight: bold;">Edit herd to add or remove animals or to enter end date of the herd and click on delete to remove the herd</h5>
+
+
+		<table id="table"
+			data-search="true"
+			data-pagination="true"
+			data-show-refresh="true"
+			data-show-columns="true"
+			data-click-to-select="true"
+			data-show-export="true"
+			data-filter-control="true">
+			<thead>
+				<tr>
+					<th data-field="state" data-radio="true" id="selectall"></th>
+					<th data-sortable="true" data-field="name">Herd Name</th>
+					<th data-sortable="true" data-field="description">Description</th>
+					<th data-field="create_date">Create Date</th>
+					<th data-field="end_date">End Date</th>
+					<th data-field="comments">Comments</th>
+				</tr>
+			</thead>
+		</table>
+		<br>
+		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+		<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+
+	<div class="modal fade" id="HerdEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Edit this Herd?</h4>
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				   <span aria-hidden="true">&times;</span>
+				 </button>
+			  </div>
+			  <div class="modal-body">
+					  <fieldset disabled>
+						  <div class="row">
+								<input type="text" name="Herd_Name" id="Herd_Name" value=""/>
+
+								<input type="text" name="create_date" id="create_date" value=""/>
+
+						  </div>
+					  </fieldset>
+					  <br>
+					  <div class="enddate">
+					  <label class="control-label col-xs-2" for="end_date">End Date</label>
+				                <div class="input-group col-xs-2">
+				                     <input class="date" id="end_date" placeholder="YYYY-MM-DD" type="text">
+				                </div>
+				      </div>
+				      <br>
+					<div class="row">
+						<div class="col-xs-5">
+
+							<select name="from[]" id="search" class="form-control" size="10" multiple="multiple">
+							</select>
+						</div>
+
+						<div class="col-xs-2" style="padding-top:25px;">
+							<button type="button" id="search_rightAll" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-forward"></i></button>
+							<button type="button" id="search_rightSelected" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-chevron-right"></i></button>
+							<button type="button" id="search_leftSelected" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-chevron-left"></i></button>
+							<button type="button" id="search_leftAll" class="btn btn-block" style="background-color:#53C376"><i class="glyphicon glyphicon-backward"></i></button>
+						</div>
+
+						<div class="col-xs-5">
+							<select name="to[]" id="search_to" class="form-control" size="10" multiple="multiple"></select>
+						</div>
+					</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Herd_Edit_No" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Animal_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="HerdDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Delete this Herd?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<input type="text" name="Delete_Name" id="Delete_Name" value=""/>
+
+						<input type="text" name="Delete_Date" id="Delete_Date" value=""/>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	</div>
+	{% endblock %}
+
+{% block Herd %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/herd_list_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

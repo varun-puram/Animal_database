@@ -1,0 +1,191 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Update Experiment{% endblock %}</title>
+
+{% block style %}
+
+#table{
+    background-color:#F3F1DA;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+border:4px solid black;
+    color:black;
+    cursor:pointer;
+}
+
+.no-filter-control{
+border-bottom: 4px solid black;
+height:auto !important;
+}
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+}
+
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container">
+    	<div id="Notification area"></div>
+    	<h1 align="center" style="color:blue; font-weight:bold">Update Experiment</h1>
+    	<br>
+    	<h5 style="font-weight: bold;">Note:</h5>
+    	<h5 style="font-weight: bold;">Choose a herd and click on Edit button to update values for selected attributes or click on Change to change current attributes. </h5>
+    	<h5 style="font-weight: bold;">Download the data using export data option.</h5>
+    		<div id="toolbar" class="btn-group">
+    	</div>
+    	<table id="table"
+    		data-search="true"
+    		data-pagination="true"
+    		data-show-refresh="true"
+    		data-show-columns="true"
+    		data-click-to-select="true"
+    		data-show-export="true"
+    		data-filter-control="true">
+    		<thead>
+    			<tr>
+    				<th data-field="state" data-radio="true"></th>
+    				<th data-field="create_date" class="w150">Create Date</th>
+    				<th data-field="name" class="w150">Herd Name</th>
+    				<th data-field="description" class="w150">Description</th>
+    				<th data-field="animalname" class="w250">Animal Names</th>
+    				<th data-field="string" class="w150">Current Attributes</th>
+
+    			</tr>
+    		</thead>
+    	</table>
+
+    	<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+    	<button type="button" class="btn btn-warning btn-lg" id="Change">Change</button>
+    	<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+	</div>
+    	<!-- Modal Expansion code -->
+    	<div class="modal fade" id="ExperimentEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    	  <div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+    		  <div class="modal-content">
+    			  <div class="modal-header">
+    				<h4 class="modal-title" id="exampleModalLabel"  style="float:left; font-weight:bold;">Edit Experiment</h5>
+    				<button type="button" class="close" data-dismiss="modal" aria-label="Close"  style="float:right;">
+    				  <span aria-hidden="true">&times;</span>
+    				</button>
+    			  </div>
+    			  <fieldset disabled>
+    				  <div class="modal-body">
+    						<p>This Experiment?</p>
+    					  <input type="text" class="form-control" id="name" placeholder="Name">
+    				  </div>
+    			  </fieldset>
+    			  <div class="modal-footer">
+    				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+    				<button type="button" id = "Edit_Experiment_Yes" class="btn btn-primary">Yes</button>
+    			  </div>
+    		  </div>
+    		</div>
+    	  </div>
+    	</div>
+    	<div class="modal fade" id="ExperimentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    	  <div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+    		  <div class="modal-content">
+    			  <div class="modal-header">
+    				<h4 class="modal-title" id="exampleModalLabel" style="float:left; font-weight:bold;">Delete Transactions for this Pasture?</h4>
+    				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right; font-weight:bold;">
+    				  <span aria-hidden="true">&times;</span>
+    				</button>
+    			  </div>
+    			  <fieldset disabled>
+    				  <div class="modal-body">
+    						<p>This Experiment?</p>
+    					  <input type="text" class="form-control" id="nameDelete" placeholder="Experiment">
+    				  </div>
+    			  </fieldset>
+    			  <div class="modal-footer">
+    				<button type="button" class="btn btn-danger" id="Delete_No" data-dismiss="modal">No</button>
+    				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+    			  </div>
+    		  </div>
+    		</div>
+    	  </div>
+    	</div>
+    	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    	  <div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+    		  <div class="modal-content">
+    			  <div class="modal-header">
+    				<h4 class="modal-title" id="exampleModalLabel"  style="float:left; font-weight:bold;">Want to Upload CSV?</h4>
+    				<button type="button" class="close" data-dismiss="modal" aria-label="Close"  style="float:right">
+    				  <span aria-hidden="true">&times;</span>
+    				</button>
+    			  </div>
+    			  <div class="modal-body">
+    				<div class="container" style="min-height:100% width:80%">
+    					<input type="file" id="fileUpload"/>
+    					<input type="button" id="upload" value="Upload" />
+    				</div>
+    				<div id="dvCSV"></div>
+    			  </div>
+    			  <div class="modal-footer">
+    				<button type="button" id = "Upload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+    			  </div>
+    		  </div>
+    		</div>
+    	  </div>
+    	</div>
+    	<div class="modal fade" id="Update_Parameters" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    	  <div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+    		  <div class="modal-header">
+    			<h4 class="modal-title" id="exampleModalLabel"  style="float:left; font-weight:bold;">Update Parameters</h4>
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"  style="float:right;">
+    			  <span aria-hidden="true">&times;</span>
+    			</button>
+    		  </div>
+    		  <div class="modal-body">
+    		   <div class="container">
+    				<h4>Experiment</h4>
+    				<br>
+    				    <input type="checkbox" class="selectallexperiment" style="font-weight: bold;">Select All<br>
+    					<input type="checkbox" class="groupaddinput3" id="sireframescore" value="input-sireframescore">Sire Frame Score<br>
+    					<input type="checkbox" class="groupaddinput3" id="weanheight" value="input-weanheight">Wean Height<br>
+    					<input type="checkbox" class="groupaddinput3" id="weanweight" value="input-weanweight">Wean Weight<br>
+    					<input type="checkbox" class="groupaddinput3" id="weandate" value="date-weandate">Wean Date<br>
+    					<input type="checkbox" class="groupaddinput3" id="birthweight" value="input-birthweight">Birth Weight<br>
+    					<input type="checkbox" class="groupaddinput3" id="yearlingheight" value="input-yearlingheight">Yearling Height<br>
+    					<input type="checkbox" class="groupaddinput3" id="yearlingweight" value="input-yearlingweight">Yearling Weight<br>
+    					<input type="checkbox" class="groupaddinput3" id="yearlingdate" value="date-yearlingdate">Yearling Date<br>
+    					<input type="checkbox" class="groupaddinput3" id="customweight" value="input-customweight">Custom Weight<br>
+    					<input type="checkbox" class="groupaddinput3" id="customweightdate" value="date-customweightdate">Custom Weight Date<br>
+    					<input type="checkbox" class="groupaddinput3" id="customheight" value="input-customheight">Custom Height<br>
+    					<input type="checkbox" class="groupaddinput3" id="customheightdate" value="date-customheightdate">Custom Height Date<br>
+    					<input type="checkbox" class="groupaddinput3" id="blockpen" value="input-blockpen">Block/Pen<br>
+    					<input type="checkbox" class="groupaddinput3" id="replicate" value="input-replicate">Replicate<br>
+    					<input type="checkbox" class="groupaddinput3" id="backfat" value="input-backfat">Back Fat<br>
+    					<input type="checkbox" class="groupaddinput3" id="treatment" value="input-treatment">Treatment<br>
+    					<input type="checkbox" class="groupaddinput3" id="adj205w" value="input-adj205w">Adj205w<br>
+    					<input type="checkbox" class="groupaddinput3" id="adj205h" value="input-adj205h">Adj205h<br>
+    					<input type="checkbox" class="groupaddinput3" id="weanframescore" value="input-weanframescore">Wean Frame Score<br>
+    					<input type="checkbox" class="groupaddinput3" id="ageatwean" value="input-ageatwean">Age at Wean<br>
+    					<input type="checkbox" class="groupaddinput3" id="adjyearlingw" value="input-adjyearlingw">Adj Yearling Weight<br>
+    					<input type="checkbox" class="groupaddinput3" id="adjyearlingh" value="input-adjyearlingh">Adj Yearling Height<br>
+    					<input type="checkbox" class="groupaddinput3" id="yearlingframescore" value="input-yearlingframescore">Yearling Frame Score<br>
+    					<input type="checkbox" class="groupaddinput3" id="ageatyearling" value="input-ageatyearling">Age at Yearling<br>
+    		        </div>
+    		    <div class="modal-footer">
+    			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    			<button type="button" id = "Update_Yes" class="btn btn-primary" data-dismiss="modal">Update</button>
+    		  </div>
+    	    </div>
+    	  </div>
+    	 </div>
+    	</div>
+
+	{% endblock %}
+
+{% block experiment %}class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_update_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

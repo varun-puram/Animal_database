@@ -1,0 +1,138 @@
+
+ 
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Data From SQL Queries{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0px;">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color:blue; font-weight:bold"> SQL QUERIES</h1>
+	<br>
+	
+	<div class="col-xs-6">
+        <div class="row col-xs-12"></div>
+        <!-- <div id="toolbar" class="btn-group" >
+			<button type="button" id="query1" class="btn btn-primary btn-lg">Query 1</button>
+            <button type="button" id="query2" class="btn btn-primary btn-lg">Query 2</button>
+            <button type="button" id="query3" class="btn btn-primary btn-lg">Query 3</button>
+                        
+		</div> -->     
+        <button type="button" id="refresh" class="btn btn-primary btn-lg">Refresh</button>
+        <p><h4>Records when animaltype equals cow and weight above 1200 :</h4> <button type="button" id="query1" class="btn btn-primary btn-lg">Get data</button></p>
+                       <p><h4>Records when breed equals X-Bred and howdisposed equals sold :</h4> <button type="button" id="query2" class="btn btn-primary btn-lg">Get data</button></p>
+                       <p><h4>Records when hornstatus equals polled and sire equals RD Angus :</h4> <button type="button" id="query3" class="btn btn-primary btn-lg">Get data</button></p>
+            		  <!-- <div class="row col-xs-12" ><span><button type="button" id="query1" class="btn btn-primary btn-lg">Get data</button></span></div> -->
+                      <!-- <div class="row col-xs-12" ><span><button type="button" id="query2" class="btn btn-primary btn-lg">Records when breed equals X-Bred and howdisposed equals sold</button></span></div> -->
+                      <!-- <div class="row col-xs-12" ><span><button type="button" id="query3" class="btn btn-primary btn-lg">Records when hornstatus equals polled and sire equals RD Angus</button></span></div> -->
+                      </div>
+                      </div>
+                      <table id="table"
+                                  data-search="true"
+                                  data-pagination="true"
+                                  data-show-refresh="true"
+                                  data-show-columns="true"
+                                  data-show-export="true"
+                                  data-click-to-select="true"
+                                  data-filter-control="true">
+                                  <thead >
+                                      <tr>
+                                          <th data-field="state" data-radio="true"></th>
+                          
+                                          <th data-sortable="true" data-field="animalname" class="w130">Animal Name</th>
+                                          <th data-field="eartag" class="w100">Ear Tag</th>
+                                          <th data-field="eid" class="w100">EID</th>
+                                          <th data-field="weight">weight</th>
+                                          <th data-field="datedisposed" class="w150">Date_Scanned</th>
+                                          <th data-field="sire" class="w100" >Sire</th>
+                                          <th data-field="dam" class="w100" >Dam</th>
+                                          <th data-field="DOB" class="w130" >Date Of Birth</th>
+                          
+                                          <th data-field="alternativeid" class="w150">Alternative ID</th>
+                                          <th data-field="animaltype" class="w150">Animal type</th>
+                                          <th data-field="brand" class="w100">Brand</th>
+                                          <th data-field="brandlocation" class="w150">Brand location</th>
+                                          <th data-field="breed" class="w100">Breed</th>
+                                          <th data-field="breeder" class="w200">Breeder</th>
+                                          <th data-field="color" class="w100">Color</th>
+                                          <th data-field="comments" class="w100">Comment</th>
+                          
+                          
+                                          <th data-field="dateacquired" class="w150">Date acquired</th>
+                                          
+                                          <th data-field="disposalreason" class="w130">Disposal reason</th>
+                          
+                                          <th data-field="gender" class="w100">Gender</th>
+                          
+                                          <th data-field="herdnumberlocation" class="w100">Herd#</th>
+                                          <th data-field="herdstatus" class="w130">Herd status</th>
+                                          <th data-field="hornstatus" class="w130">Horn status</th>
+                                          <th data-field="howacquired" class="w130">How acquired</th>
+                                          <th data-field="howconceived" class="w130">How conceived</th>
+                                          <th data-field="howdisposed" class="w130">How disposed</th>
+                                          <th data-field="includeinlookups" class="w130">Include in lookups</th>
+                                          <th data-field="managementcode" class="w130">Management code</th>
+                                          <th data-field="ownerID" class="w200">Owner ID</th>
+                          
+                                          <th data-field="registration" class="w130">Registration</th>
+                                          <th data-field="sex" class="w100">Sex</th>
+                                          <th data-field="species" class="w100">Species</th>
+                                          <th data-field="springfall" class="w130">Spring-fall</th>
+                                          <th data-field="status" class="w100">Status</th>
+                                          <th data-field="tattooleft" class="w130">Tattoo-left</th>
+                                          <th data-field="tattooright" class="w130">Tattoo-right</th>
+                                          <th data-field="email_id" class="w130">Email ID</th>
+                                                 
+                                          <!--<th data-field="pasturenumber">pasture number</th>
+                                          data-filter-control="input"
+                                          data-filter-control="select"
+                                          <th data-field="current_expt_no">current_expt_no</th>
+                                          <th data-sortable="true" data-field="Animal_ID" class="col-xs-4">Database ID</th>
+                                          <th data-field="sub_pasture">Sub pasture</th>
+                                          <th data-field="weight">weight</th>
+                                          <th data-field="currentframescore">currentframescore</th>
+                                          <th data-field="damframescore">damframescore</th>
+                                          <th data-field="Herd" class="w100" data-filter-control="select">Herd</th>
+                                          <th data-field="height">height</th>-->
+                                      </tr>
+                                  </thead>
+                              </table>
+                                  
+                      
+                      
+                      {% endblock %}
+                      
+                          {% block animal %} class="panel-collapse collapse in" {% endblock %}
+                          {% block imports %}
+                          <script type="text/javascript" src="{{url_for('static', filename= 'js/StandardQueries.js')}}"></script>{% endblock %}
+                      
+                      
+                      </body>
+                      
+                      </html>

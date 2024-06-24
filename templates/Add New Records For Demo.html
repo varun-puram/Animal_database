@@ -1,0 +1,160 @@
+{% extends "tempheader.html" %}
+
+
+
+
+
+
+
+
+
+<html>
+<head><title>{% block title %}Add New Records For Demo{% endblock %}</title></head>
+<body>
+{% block main %}
+<div class="container" style="padding:0;">
+<div id="Notification area"></div>
+<h1 style="color:blue; font-weight:bold" align="center">Add New Records For Demo</h1>
+	<form  method="post">
+    <div class="row">
+        <div class="row"></div>
+        <div class="form-group col-xs-12" align="left" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;"  >
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-xs-6">
+               	    <label for="EID" class="col-xs-4" align="right">EID </label>
+            		<div class="col-xs-8">
+            			<input type="varchar" class="form-control" id="EID" placeholder="Enter EID">
+            		</div>
+            	</div>
+            	<div class="col-xs-6">
+            		<label for="Date_Registered" class="col-xs-4" align="right">Date_Registered</label>
+            		<div class="col-xs-8">
+            			<input class="form-control" id="Date_Registered" name="Date_Registered" placeholder="YYYY-MM-DD" type="varchar"/>
+            		</div>
+				</div>
+			</div>
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-xs-6">
+                	<label for="Weight" class="control-label col-xs-4" align="right">Weight</label>
+    				<div class="col-xs-8">
+    					<input type="int" class="form-control" id="Weight" placeholder="Weight">
+    				</div>
+				</div>
+			</div>
+			<br>
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-xs-6">
+                	<label for="Type" class="control-label col-xs-4" align="right">Type</label>
+    				<div class="col-xs-8">
+    					<input type="varchar" class="form-control" id="Type" placeholder="Type">
+    				</div>
+				</div>
+			</div>
+            <div class="col-xs-6">
+                <label for="Date_scanned" class="col-xs-4" align="right">Date_scanned</label>
+                <div class="col-xs-8">
+                    <input class="form-control" id="Date_scanned" name="Date_scanned" placeholder="YYYY-MM-DD" type="varchar"/>
+                </div>
+            </div>
+        </div>
+			
+				<!--<div class="col-xs-6">
+    				<label for="lotno" class="col-xs-4" align="right">Lot #:</label>
+    				<div class="col-xs-8">
+                        <select class="form-control" id="lotno"></select>
+    				</div>
+				</div>
+            </div>-->
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+    				<label for="uploads" class="col-xs-4" align="right">Uploads:</label>
+    				<div class="col-xs-8">
+    					<input type="text" class="form-control" id="uploads" placeholder="uploads" disabled>
+    				</div>
+				</div>
+				<div class="col-xs-6">
+				    <div class="col-xs-4"></div>
+				    <div class="col-xs-7">
+    				    <button type="button" class="btn btn-primary" align="center" id="Upload_PDF">Upload PDF</button>
+    				</div>
+			    </div>
+			</div>
+		   <!--- <div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-12">
+    				<label for="medical_notes" class="col-xs-2" align="right">Medical Notes:</label>
+    				<div class="col-xs-10">
+    					<textarea class="form-control" rows="6" id="medical_notes" placeholder="Medical Notes"></textarea>
+    				</div>
+				</div>
+			</div>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-12">
+    				<label for="result" class="col-xs-2" align="right">Laboratory Result:</label>
+    				<div class="col-xs-10">
+    					<textarea class="form-control" rows="6" id="result" placeholder="Laboratory Result"></textarea>
+    				</div>
+				</div>
+			</div>
+			<div class= "row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+    				<label for="Amt_given" class="control-label col-xs-4" align="right">Amount Given:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" id="Amt_given" class="form-control" placeholder="Amount Given">
+    				</div>
+				</div>
+				<div class="col-xs-6">
+    				<label for="route" class="control-label col-xs-4" align="right">Route:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" class="form-control" id="route" placeholder="Route">
+    				</div>
+				</div>
+			</div>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+    				<label for="water_feed" class="col-xs-4 control-label" align="right">Water/Feed:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
+    				</div>
+				</div>
+				<div class="col-xs-6">
+    				<label for="withdraw_time" class="control-label col-xs-4" align="right">Withdraw Time:</label>
+    				<div class="col-xs-8">
+    				  <input type="text" id="withdraw_time" class="form-control" placeholder="Withdraw Time">
+    				</div>
+				</div>
+			</div>
+	    </div>
+    </div>--> 
+	</form>
+	<div class="row col-xs-12" style="margin:10px" align="center"><span><button type="button" id="Add_Button" class="btn btn-primary btn-lg">Add New Record</button></span></div>
+	<div class="modal fade" id="UploadPDFModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Upload PDF</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <form id="upload-file" role="form" action="sendQuestions" method="post" enctype="multipart/form-data">
+			<div class="modal-body">
+				<label for="file"><b>Upload packet here</b></label>
+				<input type="file" name="file" id="Upload">
+				<p class="help-block">Please make sure that PDF names dont have spaces.
+										This might take a few seconds.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button id="upload-file-btn" type="button" class="btn btn-primary" data-dismiss="modal" value="Upload">Upload</button>
+			</div>
+		</form>
+		</div>
+	</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block HealthRecords %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/AddNewRecordsForDemo.js')}}"></script>{% endblock %}
+</body>
+</html>

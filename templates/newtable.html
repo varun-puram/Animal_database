@@ -1,0 +1,41 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}New Table{% endblock %}</title></head>
+<body>
+table, th ,td { 
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+<h2> Instructions for filling datatypes </h2>
+<table style = "width:100%">
+  <tr>
+     <th>Datatypes</th>
+     <th>Instructions</th>
+  </tr>
+  <tr>
+     <th>INT</th>
+     <th>If there is number in short range </th>
+  </tr>
+  <tr>
+      <th>LONG</th>
+      <th>If there is very large number </th>
+  </tr>
+  <tr>
+      <th>char</th>
+      <th>If the values are in characters</th>
+  </tr>
+  <tr>
+      <th>varchar</th>
+      <th>if there are strings</th>
+  </tr>
+  <tr>
+      <th>Date</th>
+      <th>If the value is in the form of Date</th>
+  </tr>
+</table>
+</body>
+</hmtl>
+
+  

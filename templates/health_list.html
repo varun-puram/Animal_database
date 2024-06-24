@@ -1,0 +1,206 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Health List{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+<!--.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+}
+
+tr,th, td {
+    border: 1px black;
+
+}-->
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0px;">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color:blue; font-weight:bold"> Health Record List</h1>
+	<br>
+	<h5 style="font-weight: bold;"> Note: Select a record to edit or delete,download the data using export data option</h5>
+	<div class="col-xs-6">
+            		<label for="start_date" class="col-xs-4" align="right">Start Date:</label>
+            		<div class="col-xs-8">
+            			<input class="date form-control" id="start_date" name="start_date" placeholder="YYYY-MM-DD" type="text"/>
+            		</div>
+				</div>
+	<div class="col-xs-6">
+            		<label for="end_date" class="col-xs-4" align="right">End Date:</label>
+            		<div class="col-xs-8">
+            			<input class="date form-control" id="end_date" name="end_date" placeholder="YYYY-MM-DD" type="text"/>
+            			
+            		<div class="row col-xs-12" style="margin:10px" align="center"><span><button type="button" id="search" class="btn btn-primary btn-lg">Search</button></span></div>
+            		</div>
+				</div>
+
+   <table id="table"
+			data-search="true"
+			data-pagination="true"
+			data-show-refresh="true"
+			data-show-columns="true"
+			data-show-export="true"
+			data-click-to-select="true"
+			data-filter-control="true">
+			<thead>
+				<tr>
+					<th data-field="state" data-radio="true" id="selectall"></th>
+						<th data-field="Record_ID">Database ID</th>
+						<th data-sortable="true" data-field="create_date" class="w100">Date</th>
+						<th data-field="Animal_id">Animal Name</th>
+						<th data-field="medical_notes" class="w500">Medical Notes</th>
+						<th data-field="drug">Medicine Name</th>
+						<th data-field="location">Location</th>
+						<th data-field="Amt_given">Amount Given</th>
+						<th data-field="route">Route</th>
+						<th data-field="withdraw_time">Withdraw Time</th>
+						<th data-field="water_feed">Water/Feed</th>
+						<th data-field="result" data-formatter="nameFormatter">Laboratory Results</th>
+						<th data-field="email_id">Email ID</th>
+				</tr>
+			</thead>
+		</table>
+		<br>
+		<button type="button" class="btn btn-primary btn-lg" id="Edit">Edit</button>
+		{% if session['roles'] == "ADMIN" %}
+		<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+		{% endif %}
+		<div class="modal fade" id="HealthEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel"style="float:left; font-weight:bold;" >Edit this Health Record?</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					<div class="row form-group">
+						<label for="animalname" class="control-label col-xs-1">Animal Name</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="animalname" placeholder="Animal Name" disabled>
+						</div>
+						<label for="Record_ID" class="control-label col-xs-1">Database ID</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="Record_ID" placeholder="Database ID" disabled>
+						</div>
+						<label for="location" class="control-label col-xs-1">Location</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="location" placeholder="Location">
+						</div>
+						<label for="create_date" class="control-label col-xs-1">Create Date</label>
+						<div class="input-group col-xs-2">
+						   <input class="date form-control" id="create_date" name="create_date" placeholder="YYYY-MM-DD" type="text"/>
+						</div>
+
+					</div>
+					<hr width="50%" size="3" align="center">
+					<div class="form-group">
+						<label for="Medical_ID" class="control-label col-xs-1">Medicine</label>
+						<div class="col-xs-2">
+						  <select class="form-control" id="Medical_ID"></select>
+						</div>
+						<label for="lotno" class="control-label col-xs-1">Medicine</label>
+						<div class="col-xs-2">
+						  <select class="form-control" id="lotno"></select>
+						</div>
+						<div class="col-xs-2">
+                			<input type="text" class="form-control" id="uploads" placeholder="uploads" disabled>
+                		</div>
+						<button type="button" class="btn btn-info" id="Upload_PDF">Upload PDF</button>
+
+					</div>
+
+					<hr width="50%" size="3" align="center">
+					<div class="form-group">
+						<div class="col-xs-12">
+							<textarea class="form-control" rows="6" id="medical_notes" placeholder="Medical Notes" required></textarea>
+						</div>
+					</div>
+					<hr width="50%" size="3" align="center">
+					<div class="form-group">
+						<div class="col-xs-12">
+                            <textarea class="form-control" rows="6" id="result" placeholder="Laboratory Result"></textarea>
+                        </div>
+					</div>
+					<hr width="50%" size="3" align="center">
+					<div class="form-group">
+						<label for="Amt_given" class="control-label col-xs-1">Amount Given</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="Amt_given" placeholder="Amount Given">
+						</div>
+						<label for="route" class="control-label col-xs-1">Route</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="route" placeholder="Route">
+						</div>
+						<label for="water_feed" class="control-label col-xs-1">Water/ Feed</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
+						</div>
+						<label for="withdraw_time" class="control-label col-xs-1">Withdraw Time</label>
+						<div class="col-xs-2">
+							<input type="text" class="form-control" id="withdraw_time" placeholder="Withdraw Time">
+						</div>
+					</div>
+					<br>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+					<button type="button" id = "Health_Edit_Modal_Yes" class="btn btn-primary">Yes</button>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="modal fade" id="HealthDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete this Health Record?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <h2 id="Delete_Animal"><h2>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+	{% endblock %}
+
+{% block HealthRecords %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/health_list_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

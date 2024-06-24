@@ -1,0 +1,343 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Inspection Report Submit{% endblock %}</title></head>
+<body>
+   	{% block main %}
+   	 <div class="container">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color:blue; font-weight:bold"> Inspection Report </h1>
+	<br>
+	<h5 style="font-weight: bold;"> Note: Currently you are on Pasture Inspection tab,please click on Building Inspection tab to submit report for Building Inspection</h5>
+<br>
+	<form class = "form-horizontal">
+		<ul class="nav nav-pills nav-justified">
+			<li role="presentation" style="border-radius:5px;" class="active btn-warning"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Pasture Inspection</a></li>
+			<li role="presentation" style="border-radius:5px;" class="btn-warning"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Building Inspection</a></li>
+		</ul>
+		<br>
+		<div class="tab-content" style="background-color:#E3E3AB;padding:20px; border: 2px solid black; border-radius:25px;">
+			<div role="tabpanel" class="tab-pane fade in active" id="1" style="margin-top:15px;margin-left:100px; margin-right:100px;">
+				<form class="form-horizontal" style="margin-top:15px;">
+					<div class="form-group">
+					     <div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+                             <div class="row">
+						<label for="pasture_number" class="control-label col-xs-5">Pasture Number</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="pasture_number"></select>
+						</div>
+						</div>
+						</div>
+						 <div class="col-xs-6">
+						      <div class="row">
+						<label for="sub_pasture" class="control-label col-xs-5">Sub Pasture</label>
+						<div class="col-xs-7">
+						  <input type="text "class="form-control" id="sub_pasture" placeholder="Sub Pasture">
+						</div>
+						</div>
+						</div>
+						</div>
+						 <div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+						<label class="control-label col-xs-5" for="date">Date Inspected</label>
+						<div class="col-xs-7">
+						   <input class="date form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+						</div>
+						</div>
+				  <div class="col-xs-6">
+				        <label for="bulls" class="control-label col-xs-5">Bulls</label>
+				        <div class="col-xs-7">
+						  <input type="text "class="form-control" id="bulls" placeholder="Bulls">
+						</div>
+						</div>
+						</div>
+						<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+						<label for="cows" class="control-label col-xs-5">Cows</label>
+				        <div class="col-xs-7">
+						  <input type="text "class="form-control" id="cows" placeholder="Cows">
+						</div>
+						</div>
+			             <div class="col-xs-6">
+						<label for="calf" class="control-label col-xs-5">Calf</label>
+				        <div class="col-xs-7">
+						  <input type="text "class="form-control" id="calf" placeholder="Calf">
+						</div>
+						</div>
+				    </div>
+			        	<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+						<label for="general_appearance" class="control-label col-xs-5">General Appearance</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="general_appearance">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+						</div>
+					     <div class="col-xs-6">
+						<label for="livestock" class="control-label col-xs-5">Livestock</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="livestock">
+							<option>Present</option>
+							<option>Absent</option>
+						  </select>
+						</div>
+                     </div>
+                     </div>
+                     <div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+						<label for="animal_condition" class="control-label col-xs-5">Animal Condition</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="animal_condition">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+					</div>
+
+                         <div class="col-xs-6">
+						<label for="fencing" class="control-label col-xs-5">Fencing</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="fencing">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+						</div>
+						</div>
+						<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+						<label for="access_to_feed" class="control-label col-xs-5">Access To Feed/Food</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="access_to_feed">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+						</div>
+
+                         <div class="col-xs-6">
+						<label for="access_to_water" class="control-label col-xs-5">Access To Water</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="access_to_water">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+					</div>
+					</div>
+				<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+						<label for="water_cleanliness" class="control-label col-xs-5">Cleanliness of Water</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="water_cleanliness">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+						</div>
+
+                         <div class="col-xs-6">
+						<label for="shed_access" class="control-label col-xs-5">Access to Shed/Shelter</label>
+						<div class="col-xs-7">
+						  <select class="form-control" id="shed_access">
+							<option>Poor</option>
+							<option>Fair</option>
+							<option>Good</option>
+							<option>Excellent</option>
+						  </select>
+						</div>
+					</div>
+					</div>
+					</div>
+					<div class="row" style="padding-bottom:10px;">
+            			<label for="comments" class="control-label col-xs-3">Comments</label>
+						<div class="col-xs-9">
+							<input type="text" class="form-control" id="comments" placeholder="Comments">
+						</div>
+					</div>
+					<div class="row" style="padding-bottom:10px;">
+						<label for="major_deficiencies" class="control-label col-xs-3">Major Deficiencies</label>
+						<div class="col-xs-9">
+							<input type="text" class="form-control" id="major_deficiencies" placeholder="Major Deficiencies">
+						</div>
+					</div>
+					<div class="row" style="padding-bottom:15px;">
+						<label for="minor_deficiencies" class="control-label col-xs-3">Minor Deficiencies</label>
+						<div class="col-xs-9">
+							<input type="text" class="form-control" id="minor_deficiencies" placeholder="Minor Deficiencies">
+						</div>
+					</div>
+					<div align="center">
+					<button type="button" class="btn btn-primary btn-lg" id="Inspection_Submit">Submit</button>
+					</div>
+				</form>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="2">
+				<div class="form-horizontal" style="margin-top:15px;">
+					<form class="form-horizontal" style="margin-top:15px;margin-left:100px; margin-right:100px;">
+						<div class="form-group">
+						    	<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+							<label for="building_number" class="control-label col-xs-5">Building Number</label>
+							<div class="col-xs-7">
+								<input type="text" class="form-control" id="building_number" placeholder="Building Number">
+							</div>
+							</div>
+
+                         <div class="col-xs-6">
+							<label class="control-label col-xs-5" for="date">Date Inspected</label>
+							<div class="col-xs-7">
+							   <input class="date form-control" id="date_building" name="date" placeholder="MM/DD/YYYY" type="text"/>
+							</div>
+							</div>
+							</div>
+								<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+							<label for="general_appearance_building" class="control-label col-xs-5">General Appearance</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="general_appearance_building">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+							</div>
+
+                         <div class="col-xs-6">
+							<label for="squeezechute_headcatch" class="control-label col-xs-5">Working Condition of sqeeze chute/Head Catch</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="squeezechute_headcatch">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+						</div>
+						</div>
+							<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+							<label for="electrical_lighting" class="control-label col-xs-5">Electrical/Lighting</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="electrical_lighting">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+							</div>
+
+                         <div class="col-xs-6">
+							<label for="housekeeping_cleanliness" class="control-label col-xs-5">Housekeeping or Cleanliness</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="housekeeping_cleanliness">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+						</div>
+						</div>
+				<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+							<label for="headcatch_exit" class="control-label col-xs-5">Evidence of non-slip surface for livesock exiting Head Catch</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="headcatch_exit">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+							</div>
+
+                         <div class="col-xs-6">
+							<label for="pen_condition" class="control-label col-xs-5">Working Pen Conditions</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="pen_condition">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+						</div>
+						</div>
+						<div class="row" style="padding-bottom:10px;">
+                         <div class="col-xs-6">
+							<label for="sharp_disposal_containers" class="control-label col-xs-5">Evidence of sharp disposal container</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="sharp_disposal_containers">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+							</div>
+
+                         <div class="col-xs-6">
+							<label for="drug_storage" class="control-label col-xs-5">Drug Storage</label>
+							<div class="col-xs-7">
+							  <select class="form-control" id="drug_storage">
+								<option>Poor</option>
+								<option>Fair</option>
+								<option>Good</option>
+								<option>Excellent</option>
+							  </select>
+							</div>
+						</div>
+						</div>
+						</div>
+							<div class="row" style="padding-bottom:10px;">
+							<label for="iacuc2_comments" class="control-label col-xs-3">Comments</label>
+							<div class="col-xs-9">
+								<input type="text" class="form-control" id="iacuc2_comments" placeholder="Comments">
+							</div>
+						</div>
+						<div class="row" style="padding-bottom:10px;">
+							<label for="iacuc_major2_deficiencies" class="control-label col-xs-3">Major Deficiencies</label>
+							<div class="col-xs-9">
+								<input type="text" class="form-control" id="iacuc_major2_deficiencies" placeholder="Major Deficiencies">
+							</div>
+						</div>
+							<div class="row" style="padding-bottom:15px;">
+							<label for="iacuc_minor2_deficiencies" class="control-label col-xs-3">Minor Deficiencies</label>
+							<div class="col-xs-9">
+								<input type="text" class="form-control" id="iacuc_minor2_deficiencies" placeholder="Minor Deficiencies">
+							</div>
+						</div>
+						<div align="center">
+						<button type="button" class="btn btn-primary btn-lg" id="Inspection_Submit_Building">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</form>
+		<br>
+	</div>
+	{% endblock %}
+
+{% block Inspection %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/inspection_submit_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

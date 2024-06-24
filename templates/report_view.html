@@ -1,0 +1,59 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}View Report{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+{% endblock %}
+</head>
+<body>
+{% block main %}
+<div class="container" style="padding:0">
+	<h1 align="center" style="color:blue;font-weight:bold">Reports List</h1>
+	<table id="table"
+			data-search="true"
+			data-pagination="true"
+			data-show-refresh="true"
+			data-show-columns="true"
+			data-show-export="true"
+			data-click-to-select="true"
+			data-filter-control="true">
+			<thead>
+				<tr>
+        		    <th data-field="state" data-radio="true"></th>
+        		    <th data-field="ID" style="border-bottom: 4px solid black;">Report ID</th>
+        			<th data-field="name" style="border-bottom: 4px solid black;">Report Name</th>
+        			<th data-field="parameters" style="border-bottom: 4px solid black;">Parameters</th>
+        			<th data-field="start_date" style="border-bottom: 4px solid black;">Start Date</th>
+        			<th data-field="end_date" style="border-bottom: 4px solid black;">End Date</th>
+				</tr>
+			</thead>
+		</table>
+
+	<button type="button" class="btn btn-primary btn-lg" id="ViewReport" >View</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete" >Delete</button>
+	</div>
+	{% endblock %}
+{% block Report %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/report_view.js')}}"></script> {% endblock %}
+</body>
+</html>

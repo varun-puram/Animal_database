@@ -1,0 +1,88 @@
+
+ 
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Demo Data In Between Dates{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0px;">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color:blue; font-weight:bold"> Demo Data In Between Dates</h1>
+	<br>
+	
+	<div class="col-xs-6">
+            		<label for="start_date" class="col-xs-4" align="right">Start Date:</label>
+            		<div class="col-xs-8">
+            			<input class="date form-control" id="start_date" name="start_date" placeholder="YYYY-MM-DD" type="date"/>
+            		</div>
+				</div>
+	<div class="col-xs-6">
+            		<label for="end_date" class="col-xs-4" align="right">End Date:</label>
+            		<div class="col-xs-8">
+            			<input class="date form-control" id="end_date" name="end_date" placeholder="YYYY-MM-DD" type="date"/>
+            			
+            		<div class="row col-xs-12" style="margin:10px" align="center"><span><button type="button" id="search" class="btn btn-primary btn-lg">Search</button></span></div>
+            		</div>
+				</div>
+
+   <table id="table"
+			data-search="true"
+			data-pagination="true"
+			data-show-refresh="true"
+			data-show-columns="true"
+			data-show-export="true"
+			data-click-to-select="true"
+			data-filter-control="true">
+			
+			<thead>
+				<tr>
+					<th data-field="EID" class="w130">EID</th>
+				<th data-field="Date_Registered" class="w130">Date_Registered</th>
+				<th data-field="Weight" class="w130">Weight</th>
+				<th data-field="Type" class="w130">Type</th>
+				<th data-field="Date_scanned" class="w130">Date_scanned</th>
+				</tr>
+			</thead>
+		</table>
+			
+		</table>
+		<br>
+		
+				  
+	</div>
+	{% endblock %}
+
+	{% block animal %} class="panel-collapse collapse in" {% endblock %}
+	{% block imports %}
+	<script type="text/javascript" src="{{url_for('static', filename= 'js/DemoDataInBetweenDates.js')}}"></script>{% endblock %}
+
+
+</body>
+
+</html>

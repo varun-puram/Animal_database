@@ -1,0 +1,114 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Animal List{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+border:4px solid black;
+    color:black;
+    cursor:pointer
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+}
+.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+}
+
+tr,th, td {
+    border: 1px black;
+
+
+
+
+{% endblock %}
+
+
+<body>
+	{% block main %}
+        <div class="container" style="padding:0;">
+        <div id="Notification area"></div>
+<h1 align="center" style="color:blue; font-weight:bold"> Upload Pdf File</h1>
+<br>
+	
+	</div>
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-click-to-select="true"
+		data-show-export="true"
+		data-filter-control="true"
+	    class="table table-dark"
+	>
+
+		<thead >
+			<tr>
+				<th data-field="state" data-radio="true"></th>
+				<th data-sortable="true" data-field="id" class="w130">ID </th>
+				<th data-field="PDF_name" class="w200">Name </th>
+				<th data-field="Date_uploaded" class="w200">Date_uploaded</th>
+				<th data-field="PDF"  data-formatter="nameFormatter">PDF file</th>
+				
+		   	</tr>
+		</thead>
+	</table>
+<h1>Upload PDF file</h1>
+<form action="/action_page.php">
+  <label for="fname">ID:   </label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+   <label for="lname">Date:</label>
+  <input type="text" id="date" name="date"><br><br>
+  <h2>select PDF file</h2>
+<form id="upload_form" enctype="multipart/form-data" method="post">
+  <input type="file" name="file1" id="file1" onchange="uploadFile()"><br>
+  <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+  <h3 id="status"></h3>
+  <p id="loaded_n_total"></p>
+</form>
+ <input type="submit" value="Upload">
+</form>
+
+{% endblock %}
+{% block animal %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/upload_pdf.js')}}"></script>{% endblock %}
+</body>
+</html>				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				

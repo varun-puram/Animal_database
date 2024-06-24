@@ -1,0 +1,42 @@
+{% extends "tempheader.html" %}
+
+{% block main %}
+<html>
+<h2>User Info Page</h2>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form id="userinfo" method="POST" class="form-horizontal" style="margin-top:15px;">
+			<div class="form-group">
+				<label for="firstname" class="control-label col-xs-1">First Name</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="control-label col-xs-1">last Name</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email" class="control-label col-xs-1">Email</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="email" name="email" placeholder="Email">
+				</div>
+			</div>
+			<fieldset disabled>
+			<div class="form-group">
+				<label for="userid" class="control-label col-xs-1">User ID</label>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="userid" name="userid" placeholder="User ID">
+				</div>
+			</div>
+			</fieldset>
+			<button type="button" id="submituserdata" name="submituserdata" class="btn btn-default">Submit Changes</button>
+		</form>
+	</div>
+</div>	
+
+<script type = "text/javascript" src="{{url_for('static', filename= 'js/userinfo.js')}}"></script>	
+</html>
+{% endblock %}

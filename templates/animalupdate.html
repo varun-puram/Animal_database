@@ -1,0 +1,672 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Animal View/Update{% endblock %}</title>
+<style>
+.label{
+        width:100%;
+		padding-right: 2px;
+    }
+.input{
+		width:100%;
+}
+</style>
+</head>
+<body>
+
+{% block main %}
+<h1 align="center" style="color:blue; font-weight:bold">Update Animal</h1>
+<br>
+<div class="row" style="position: relative;
+    left: 400px;">
+	<div class="col-xs-12">
+		<div class="col-xs-4">
+			<input  type="text" class="form-control" id="SearchAnimal" placeholder="Animal Name" >
+		</div>
+		<button type="button" id="SearchButton" class="btn btn-primary">Search</button>
+		<!--<span class="pull-right"><button type="button" class="btn btn-primary" id="animal_update">Update</button></span>-->
+	</div>
+</div>
+<br><br>
+<!--<div class="form-group" >
+	<label for="Animal_ID" class="control-label col-xs-1">Database ID</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="Animal_ID" name="Animal_ID" placeholder="Database ID">
+	</div>
+	<label for="animalname" class="control-label col-xs-1">Animal Name</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
+	</div>
+	<label for="eartag" class="control-label col-xs-1">Ear Tag</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="eartag" placeholder="Ear Tag">
+	</div>
+	<label for="eid" class="control-label col-xs-1">EID</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="eid" placeholder="Eid">
+	</div>
+</div>
+<hr width="50%" size="8" align="center">
+<div class="form-group">
+	<label for="pasturenumber" class="control-label col-xs-1">Pasture Number</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="pasturenumber"></select>
+	</div>
+	<label for="herd" class="control-label col-xs-1">Herd</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="herd" placeholder="Herd">
+	</div>
+	<label for="trial" class="control-label col-xs-1">Trial</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="trial" placeholder="Trial">
+	</div>
+	<label for="animaltype" class="control-label col-xs-1">Animal Type</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="animaltype">
+		<option></option>
+		<option>Cow</option>
+		<option>Bull</option>
+		<option>Calf</option>
+		<option>Steer</option>
+		<option>Heifer</option>
+	  </select>
+	</div>
+</div>
+<br>
+<br>
+<hr width="50%" size="8" align="center">
+<div class="form-group">
+	<label for="height" class="control-label col-xs-1">Height</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="height" name="height" placeholder="Height">
+	</div>
+	<label for="weight" class="control-label col-xs-1">Weight</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="weight" name="weight" placeholder="Weight">
+	</div>
+	<label for="breed" class="control-label col-xs-1">Breed</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="breed" placeholder="Breed">
+	</div>
+	<label for="breeder" class="control-label col-xs-1">Breeder</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="breeder" placeholder="Breeder">
+	</div>
+</div>
+<br>
+<hr width="50%" size="3" align="center">
+<div class= "form-group">
+	<label for="sex" class="control-label col-xs-1">Sex</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="sex">
+		<option></option>
+		<option>Female</option>
+		<option>Male</option>
+	  </select>
+	</div>
+	<label for="status" class="control-label col-xs-1">Status</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="status">
+		<option></option>
+		<option>Active</option>
+		<option>Inactive</option>
+	  </select>
+	</div>
+	<label for="currentframescore" class="col-xs-1 control-label">Current Frame Score</label>
+	<div class="col-xs-2">
+	  <input type="text" id="currentframescore" class="form-control" placeholder="Current Frame Score">
+	</div>
+	<label for="sub_pasture" class="control-label col-xs-1">Sub Pasture</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="sub_pasture" placeholder="sub pasture">
+	</div>
+</div>
+<br>
+<hr width="50%" size="3" align="center">
+<div class="form-group">
+	<label for="species" class="control-label col-xs-1">Species</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="species" placeholder="Species">
+	</div>
+	<label for="damframescore" class="control-label col-xs-1">Dam Frame Score</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="damframescore" placeholder="Dam Frame Score">
+	</div>
+	<label for="comments" class="col-xs-1 control-label">Comments</label>
+	<div class="col-xs-5">
+		<input type="text" id="comments" class="form-control" placeholder="Comments">
+	</div>
+</div>
+<br>
+<hr width="50%" size="3" align="center">
+<div class="form-group">
+	<label for="brand" class="control-label col-xs-1">Brand</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="brand" placeholder="Brand">
+	</div>
+	<label for="brandlocation" class="control-label col-xs-1">Brand Location</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="brandlocation">
+		<option></option>
+		<option>Left Hip</option>
+		<option>Right Hip</option>
+	  </select>
+	</div>
+	<label for="tattooleft" class="control-label col-xs-1">Tattoo Left</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="tattooleft" placeholder="Tattoo Left">
+	</div>
+	<label for="tattooright" class="control-label col-xs-1">Tattoo Right</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="tattooright" placeholder="Tattoo Right">
+	</div>
+</div>
+<br>
+<hr width="50%" size="3" align="center">
+<div class="form-group">
+	<label for="alternativeid" class="control-label col-xs-1">Alternative ID</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="alternativeid" placeholder="Alternative ID">
+	</div>
+	<label for="registration" class="control-label col-xs-1">Registration</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="registration" placeholder="Registration">
+	</div>
+	<label for="color" class="control-label col-xs-1">Color</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="color" placeholder="Color">
+	</div>
+	<label class="control-label col-xs-1" for="DOB">D.O.B</label>
+	<div class="input-group col-xs-2">
+	   <input class="date form-control" id="DOB" name="date" placeholder="YYYY-MM-DD" type="text">
+	</div>
+</div>
+<div class="form-group">
+	<label for="dam" class="control-label col-xs-1">Dam</label>
+	<div class="col-xs-5">
+		<input type="text" class="form-control" id="dam" placeholder="Dam">
+	</div>
+	<label for="sire" class="control-label col-xs-1">Sire</label>
+	<div class="col-xs-5">
+		<input type="text" class="form-control" id="sire" placeholder="Sire">
+	</div>
+</div>
+<br>
+<hr width="50%" size="3" align="center">
+<div class="form-group">
+	<label for="hornstatus" class="control-label col-xs-1">Horn Status</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="hornstatus">
+		<option></option>
+		<option>Polled</option>
+		<option>Scurred</option>
+		<option>Horned</option>
+		<option>De-horned</option>
+	  </select>
+	</div>
+	<label for="acquiredinfo" class="control-label col-xs-1">How Acquired</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="howacquired">
+		<option></option>
+		<option>Raised</option>
+		<option>Purchased</option>
+		<option>Leased</option>
+	  </select>
+	</div>
+	<label class="control-label col-xs-1" for="date">Date Acquired</label>
+	<div class="input-group col-xs-2">
+	   <input class="date form-control" id="dateacquired" name="date" placeholder="YYYY-MM-DD" type="text"/>
+	</div>
+</div>
+<div class="form-group">
+	<label for="disposalreason" class="control-label col-xs-1">Disposal Reason</label>
+	<div class="col-xs-5">
+		<input type="text" class="form-control" id="disposalreason" placeholder="Disposal Reason ">
+	</div>
+	<label for="disposedinfo" class="control-label col-xs-1">How Disposed</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="howdisposed">
+		<option></option>
+		<option>Sold</option>
+		<option>Died</option>
+		<option>Euthanized</option>
+		<option>Returned</option>
+	  </select>
+	</div>
+	<label class="control-label col-xs-1" for="date">Date Disposed</label>
+	<div class="input-group col-xs-2">
+	   <input class="date form-control" id="datedisposed" name="date" placeholder="YYYY-MM-DD" type="text"/>
+	</div>
+</div>
+<div class="form-group">
+	<label for="herdnumberlocation" class="control-label col-xs-1">Herd Number Location</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="herdnumberlocation" placeholder="Herd Number Location">
+	</div>
+	<label for="herdstatus" class="control-label col-xs-1">Herd Status</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="herdstatus" placeholder="Herd Status">
+	</div>
+	<label for="howconceived" class="control-label col-xs-1">How Conceived</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="howconceived" placeholder="How Conceived">
+	</div>
+	<label for="managementcode" class="control-label col-xs-1">Management Code</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="managementcode" placeholder="Management Code">
+	</div>
+</div>
+<br>
+<hr width="50%" size="3" align="center">
+<div class="form-group">
+	<label for="ownerid" class="control-label col-xs-1">Owner ID</label>
+	<div class="col-xs-2">
+		<input type="text" class="form-control" id="ownerID" placeholder="Owner ID">
+	</div>
+	<label for="springfall" class="control-label col-xs-1">Spring/Fall</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="springfall">
+		<option></option>
+		<option>Spring</option>
+		<option>Fall</option>
+	  </select>
+	</div>
+	<label for="includeinlookups" class="control-label col-xs-1">Include in Lookups</label>
+	<div class="col-xs-2">
+	  <select class="form-control" id="includeinlookups">
+		<option></option>
+		<option>Yes</option>
+		<option>No</option>
+	  </select>
+	</div>
+</div>-->
+
+<form  method="post">
+    <div class="row">
+        <div class="col-xs-1"></div>
+<div class="form-group col-xs-10" align="left" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;"  >
+ <div class="row" style="padding-bottom:10px;">
+
+				   <div class="col-xs-6">
+				<label for="animalname" class="control-label col-xs-5">Animal Name :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
+				</div>
+				</div>
+
+				</div>
+				<br>
+<div class="row" style="padding-bottom:10px;">
+     <div class="col-xs-6">
+	<label for="eartag" class="control-label col-xs-5">Ear Tag :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="eartag" placeholder="Ear Tag">
+				</div>
+				</div>
+				<div class="col-xs-6">
+				<label for="eid" class="control-label col-xs-5">EID :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="eid" placeholder="Eid">
+				</div>
+				</div>
+				</div>
+
+
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				<label for="pasturenumber" class="control-label col-xs-5">Pasture Number :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="pasturenumber"></select>
+				</div>
+				</div>
+				<div class="col-xs-6">
+				<label for="herd" class="control-label col-xs-5">Herd :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="herd" placeholder="Herd">
+				</div>
+				</div>
+</div>
+				<div class="row">
+			    <div class="col-xs-6">
+				<label for="trial" class="control-label col-xs-5">Trial :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="trial" placeholder="Trial">
+				</div>
+				</div>
+				<div class="col-xs-6">
+				<label for="animaltype" class="control-label col-xs-5">Animal Type :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="animaltype">
+					<option></option>
+					<option>Cow</option>
+					<option>Bull</option>
+					<option>Calf</option>
+					<option>Steer</option>
+					<option>Heifer</option>
+				  </select>
+				</div>
+			</div>
+			</div>
+			<br>
+
+			<hr width="70%" size="8" align="center">
+			<br>
+		<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				<label for="height" class="control-label col-xs-5">Height :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="height" name="height" placeholder="Height">
+				</div>
+				</div>
+				<div class="col-xs-6">
+				<label for="weight" class="control-label col-xs-5">Weight :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="weight" name="weight" placeholder="Weight">
+				</div>
+				</div>
+				</div>
+
+				<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				<label for="breed" class="control-label col-xs-5">Breed :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="breed" placeholder="Breed">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="breeder" class="control-label col-xs-5">Breeder :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="breeder" placeholder="Breeder">
+				</div>
+				</div>
+			</div>
+			<div class= "row">
+			     <div class="col-xs-6">
+				<label for="sex" class="control-label col-xs-5">Sex :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="sex">
+					<option></option>
+					<option>Female</option>
+					<option>Male</option>
+				  </select>
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="status" class="control-label col-xs-5">Status :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="status">
+					<option></option>
+					<option>Active</option>
+					<option>Inactive</option>
+				  </select>
+				</div>
+				</div>
+				</div>
+				<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+			<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="currentframescore" class="col-xs-5 control-label">Current Frame Score:</label>
+				<div class="col-xs-7">
+				  <input type="text" id="currentframescore" class="form-control" placeholder="Current Frame Score">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="gender" class="control-label col-xs-5">Gender :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="gender">
+					<option></option>
+					<option>Male</option>
+					<option>Female</option>
+				  </select>
+				</div>
+				</div>
+				</div>
+			<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="species" class="control-label col-xs-5">Species :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="species" placeholder="Species">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="damframescore" class="control-label col-xs-5">Dam Frame Score :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="damframescore" placeholder="Dam Frame Score">
+				</div>
+				</div>
+				</div>
+
+					<div class="row">
+			     <div class="col-xs-6">
+				<label for="comments" class="col-xs-5 control-label">Comments :</label>
+				<div class="col-xs-7">
+					<input type="text" id="comments" class="form-control" placeholder="Comments">
+				</div>
+			</div>
+		     <div class="col-xs-6">
+				<label for="brand" class="control-label col-xs-5">Brand :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="brand" placeholder="Brand">
+				</div>
+				</div>
+				</div>
+	<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+				<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="brandlocation" class="control-label col-xs-5">Brand Location :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="brandlocation">
+					<option></option>
+					<option>Left Hip</option>
+					<option>Right Hip</option>
+				  </select>
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="tattooleft" class="control-label col-xs-5">Tattoo Left :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="tattooleft" placeholder="Tattoo Left">
+				</div>
+				</div>
+				</div>
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="tattooright" class="control-label col-xs-5">Tattoo Right :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="tattooright" placeholder="Tattoo Right">
+				</div>
+			</div>
+		 <div class="col-xs-6">
+				<label for="alternativeid" class="control-label col-xs-5">Alternative ID :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="alternativeid" placeholder="Alternative ID">
+				</div>
+				</div>
+				</div>
+					<div class="row">
+			     <div class="col-xs-6">
+				<label for="registration" class="control-label col-xs-5">Registration :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="registration" placeholder="Registration">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="color" class="control-label col-xs-5">Color :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="color" placeholder="Color">
+				</div>
+				</div>
+				</div>
+				<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label class="control-label col-xs-5" for="DOB">D.O.B :</label>
+				<div class="col-xs-7">
+				   <input class="date form-control" id="DOB" name="DOB" placeholder="YYYY-MM-DD" type="text">
+				</div>
+			</div>
+		     <div class="col-xs-6">
+				<label for="dam" class="control-label col-xs-5">Dam :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="dam" placeholder="Dam">
+				</div>
+				</div>
+				</div>
+<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="sire" class="control-label col-xs-5">Sire :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="sire" placeholder="Sire">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="sub_pasture" class="control-label col-xs-5">Sub Pasture :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="sub_pasture" placeholder="sub pasture">
+				</div>
+			</div>
+			</div>
+		<div class="row">
+			     <div class="col-xs-6">
+				<label for="hornstatus" class="control-label col-xs-5">Horn Status :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="hornstatus">
+					<option></option>
+					<option>Polled</option>
+					<option>Scurred</option>
+					<option>Horned</option>
+					<option>De-horned</option>
+				  </select>
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="acquiredinfo" class="control-label col-xs-5">How Acquired :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="howacquired">
+					<option></option>
+					<option>Raised</option>
+					<option>Purchased</option>
+					<option>Leased</option>
+				  </select>
+				</div>
+				</div>
+				</div>
+					<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+			<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label class="control-label col-xs-5" for="date">Date Acquired :</label>
+				<div class="col-xs-7">
+				   <input class="date form-control" id="dateacquired" name="date" placeholder="YYYY-MM-DD" type="text"/>
+				</div>
+
+			</div>
+			<div class="col-xs-6">
+				<label for="disposalreason" class="control-label col-xs-5">Disposal Reason :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="disposalreason" placeholder="Disposal Reason ">
+				</div>
+				</div>
+				</div>
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="disposedinfo" class="control-label col-xs-5">How Disposed :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="howdisposed">
+					<option></option>
+					<option>Sold</option>
+					<option>Died</option>
+					<option>Euthanized</option>
+					<option>Returned</option>
+				  </select>
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label class="control-label col-xs-5" for="date">Date Disposed :</label>
+				<div class="col-xs-7">
+				   <input class="date form-control" id="datedisposed" name="date" placeholder="YYYY-MM-DD" type="text"/>
+				</div>
+			</div>
+			</div>
+			   	<div class="row">
+			     <div class="col-xs-6">
+				<label for="herdnumberlocation" class="control-label col-xs-5">Herd Number Location :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="herdnumberlocation" placeholder="Herd Number Location">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="herdstatus" class="control-label col-xs-5">Herd Status :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="herdstatus" placeholder="Herd Status">
+				</div>
+				</div>
+				</div>
+				<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+				<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="howconceived" class="control-label col-xs-5">How Conceived :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="howconceived" placeholder="How Conceived">
+				</div>
+				</div>
+			    <div class="col-xs-6">
+				<label for="managementcode" class="control-label col-xs-5">Management Code :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="managementcode" placeholder="Management Code">
+				</div>
+			</div>
+			</div>
+
+			    	<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="ownerid" class="control-label col-xs-5">Owner ID :</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="ownerID" placeholder="Owner ID">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="springfall" class="control-label col-xs-5">Spring/Fall :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="springfall">
+					<option></option>
+					<option>Spring</option>
+					<option>Fall</option>
+				  </select>
+				</div>
+				</div>
+				</div>
+			    	<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="includeinlookups" class="control-label col-xs-5">Include in Lookups :</label>
+				<div class="col-xs-7">
+				  <select class="form-control" id="includeinlookups">
+					<option></option>
+					<option>Yes</option>
+					<option>No</option>
+				  </select>
+				</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</form>
+<div class="col-xs-12" style="margin:20px" align="center"><span><button type="button" class="btn btn-primary btn-lg" id="animal_update">Update</button></span></div>
+{% endblock %}
+
+{% block animal %} class="panel-collapse collapse in" {% endblock %}
+
+</body>
+{% block imports %}
+<script type = "text/javascript" src="{{url_for('static', filename= 'js/animalupdate.js')}}"></script>
+{% endblock %}
+</html>

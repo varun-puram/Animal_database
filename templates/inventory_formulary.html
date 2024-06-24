@@ -1,0 +1,278 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Formulary Inventory{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    border:4px solid black;
+    color:black;
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+    cursor:pointer;
+    }
+
+.selected {
+   background-color:#F3F1DA !important;
+}
+.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+
+}
+
+tr, th, td {
+    border: 1px black;
+
+}
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0px;">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color: blue; font-weight:bold">Formulary Inventory</h1>
+	<br>
+		<h5 style="font-weight: bold;">Note:</h5>
+	<h5 style="font-weight: bold;">Click on Add New Entry to add a new record</h5>
+	<h5 style="font-weight: bold;">Select a record to edit or delete,download the data using export data option</h5>
+		<div class="form-group" style="margin-top:15px; margin-bottom:15px;">
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#AddNew">Add New Entry</button>
+		</div>
+
+
+
+			<table id="table"
+				data-search="true"
+				data-pagination="true"
+				data-show-refresh="true"
+				data-show-columns="true"
+				data-click-to-select="true"
+				data-show-export="true"
+				data-filter-control="true">
+				<thead>
+					<tr>
+						<th data-field="state" data-radio="true" id="selectall"></th>
+						<!--<th data-field="Medicine_ID">Database ID</th>-->
+						<th data-field="date">Entry Date</th>
+					    <th data-sortable="true" data-field="drug">Drug Name</th>
+						<th data-field="vial_size">Vial Size</th>
+						<th data-field="Lot_no">Lot Number</th>
+						<th data-field="expirydate">Expiry Date</th>
+						<th data-field="location">Location</th>
+						<th data-field="roa">ROA</th>
+						<th data-field="purchasedate">Purchase Date</th>
+						<th data-sortable="true" data-field="total_quantity">Total Quantity</th>
+						<th data-field="qty_in_stock">Quantity in Stock</th>
+						<th data-field="email_id">Email ID</th>
+
+					</tr>
+				</thead>
+			</table>
+			<br>
+			<button type="button" class="btn btn-primary btn-lg" id="edit">Edit</button>
+			<button type="button" class="btn btn-danger btn-lg" id="Delete">Delete</button>
+
+	<!-- Another Modal -->
+		<div class="modal fade" id="AddNew" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Add New Medication</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					  <form class = "form-horizontal form-group" style="margin-top:15px;">
+						<div class="row" style="padding-bottom:10px;">
+						    <div class="col-xs-4">
+
+							<label for="date" class="control-label col-xs-6">Entry Date</label>
+							<div class="col-xs-6">
+								<input type="text" class="date form-control" id="adddate" placeholder="YYYY-MM-DD">
+							</div>
+							</div>
+							<div class="col-xs-4">
+							<label for="drug" class="control-label col-xs-6">Drug</label>
+							<div class="col-xs-6">
+								<input type="text" class="form-control" id="adddrug" placeholder="Drug">
+							</div>
+							</div>
+							<div class="col-xs-4">
+							<label for="lotno" class="control-label col-xs-6" style="align-right">Lot #</label>
+							<div class="col-xs-6">
+								<input type="text" class="form-control" id="addlotno" placeholder="lotno">
+							</div>
+							</div>
+
+
+
+						</div>
+
+					<div class="row" style="padding-bottom:10px;">
+						    <div class="col-xs-4">
+							<label for="vialsize" class="control-label col-xs-6" style="align-right">Vial Size</label>
+							<div class="col-xs-6">
+								<input type="text" class="form-control" id="addvialsize" placeholder="Vial Size">
+							</div>
+							</div>
+								    <div class="col-xs-4">
+							<label for="expirydate" class="control-label col-xs-6" style="align-right">Expiry Date</label>
+							<div class="col-xs-6">
+								<input type="text" class="date form-control" id="addexpdate" placeholder="YYYY-MM-DD">
+							</div>
+							</div>
+								    <div class="col-xs-4">
+							<label for="location" class="control-label col-xs-6" style="align-right">Location</label>
+							<div class="col-xs-6">
+								<input type="text" class="form-control" id="addlocation" placeholder="Location">
+							</div>
+
+</div>
+						</div>
+						<div class="row">
+						    <div class="col-xs-4">
+						<label for="roa" class="control-label col-xs-6" style="align-right">ROA</label>
+							<div class="col-xs-6">
+								<input type="text" class="form-control" id="addroa" placeholder="ROA">
+							</div>
+							</div>
+
+						    <div class="col-xs-4">
+						<label for="purchasedate" class="control-label col-xs-6" style="align-right">Purchase Date</label>
+							<div class="col-xs-6">
+								<input type="text" class="date form-control" id="addpurchasedate" placeholder="YYYY-MM-DD">
+							</div>
+							</div>
+							   <div class="col-xs-4">
+							<label for="quantity" class="control-label col-xs-6" style="align-right">Total Quantity</label>
+							<div class="col-xs-6">
+								<input type="text" class="form-control" id="addquantity" placeholder="Quantity">
+							</div>
+						</div>
+						</div>
+					  </form>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" id = "submit_button_pharma" method="POST" class="btn btn-primary" data-dismiss="modal">Submit</button>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+
+	<div class="modal fade" id="FormularyEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Edit this entry?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			   <div class="modal-body">
+					  <form class = "form-horizontal form-group" style="margin-top:15px;">
+						<div class="row">
+							<label for="date" class="control-label col-xs-2" style="align-right">Date</label>
+							<div class="col-xs-2">
+								<input type="text" class="date form-control" id="date" placeholder="YYYY-MM-DD">
+							</div>
+							<label for="drug" class="control-label col-xs-2" style="align-right">Drug</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="drug" placeholder="Drug">
+							</div>
+							<label for="lotno" class="control-label col-xs-2" style="align-right">Lot #</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="lotno" placeholder="lotno">
+							</div>
+
+						</div>
+
+						<div class="row" style="margin-top:15px;">
+							<label for="vialsize" class="control-label col-xs-2" style="align-right">Vial Size</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="vialsize" placeholder="Vial Size">
+							</div>
+							<label for="expirydate" class="control-label col-xs-2" style="align-right">Expiry Date</label>
+							<div class="col-xs-2">
+								<input type="text" class="date form-control" id="expdate" placeholder="YYYY-MM-DD">
+							</div>
+							<label for="location" class="control-label col-xs-2" style="align-right">Location</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="location" placeholder="Location">
+							</div>
+
+
+						</div>
+					<div class="row" style="margin-top:15px;">
+						<label for="roa" class="control-label col-xs-2" style="align-right">ROA</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="roa" placeholder="ROA">
+							</div>
+						<label for="purchasedate" class="control-label col-xs-2" style="align-right">Purchase Date</label>
+							<div class="col-xs-2">
+								<input type="text" class="date form-control" id="purchasedate" placeholder="YYYY-MM-DD">
+							</div>
+							<label for="quantity" class="control-label col-xs-2" style="align-right">Total Quantity</label>
+							<div class="col-xs-2">
+								<input type="text" class="form-control" id="quantity" placeholder="Quantity">
+							</div>
+						</div>
+					  </form>
+				  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Edit_Pasture_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="FormularyDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+						<p>This entry?</p>
+					  <input type="text" class="form-control" id="pasturenumberDelete" placeholder="Pasture Number">
+
+						<p>This date?</p>
+					  <input type="text" class="form-control" id="DateDelete" placeholder="Date">
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" id="Delete_No" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+	{% endblock %}
+
+{% block Inventory %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/inventory_formulary_scripts.js')}}"></script>{% endblock %}
+</body>
+</html>

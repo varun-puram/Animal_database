@@ -1,0 +1,211 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Animal List{% endblock %}</title>
+{% block style %}
+
+#table{
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    background-color:#F3F1DA;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+border:4px solid black;
+    color:black;
+    cursor:pointer
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color:#67C699;
+}
+.no-filter-control{
+border-bottom: 3px solid black;
+height:auto!important;
+}
+
+tr,th, td {
+    border: 1px black;
+
+
+
+
+{% endblock %}
+</head>
+<body>
+
+	{% block main %}
+	<div class="container" style="padding:0;">
+	<div id="Notification area"></div>
+<h1 align="center" style="color:blue; font-weight:bold"> Animal List</h1>
+<br>
+	<h5 style="font-weight: bold;">Click on '+' icon to upload csv files.</h5>
+	<h5 style ="font-weight: bold;">Note:If we upload csv files here , the table will be created in back end . we can query in the database</h5>
+	<h5 style="font-weight: bold;">Select a record to edit or delete,download the data using export data option</h5>
+       
+	<div id="toolbar" class="btn-group" >
+		<button type="button" id="UploadCSV" class="btn btn-default"><i class="glyphicon glyphicon-plus" ></i>Upload CSV</button>
+		<button type="button" id="UploadCSV" class="btn btn-default"><i class="glyphicon glyphicon-plus" ></i>Add new Records</button>
+	</div>
+	<div>
+	<a target="_blank" href="/static/pdf_files/animal_data.csv" style="color:blue">Click here to view sample csv file for upload</a>
+	</div>
+	<table id="table"
+		data-search="true"
+		data-pagination="true"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-click-to-select="true"
+		data-show-export="true"
+		data-filter-control="true"
+	    class="table table-dark"
+	>
+
+		<thead >
+			<tr>
+				<th data-field="state" data-radio="true"></th>
+
+				<th data-sortable="true" data-field="animalname" class="w130">Animal Name</th>
+				<th data-field="eartag" class="w100">Ear Tag</th>
+				<th data-field="eid" class="w100">EID</th>
+				<th data-field="weight">weight</th>
+				<th data-field="datedisposed" class="w150">Date_Scanned</th>
+				<th data-field="sire" class="w100" >Sire</th>
+				<th data-field="dam" class="w100" >Dam</th>
+				<th data-field="DOB" class="w130" >Date Of Birth</th>
+
+				<th data-field="alternativeid" class="w150">Alternative ID</th>
+				<th data-field="animaltype" class="w150">Animal type</th>
+				<th data-field="brand" class="w100">Brand</th>
+				<th data-field="brandlocation" class="w150">Brand location</th>
+				<th data-field="breed" class="w100">Breed</th>
+				<th data-field="breeder" class="w200">Breeder</th>
+				<th data-field="color" class="w100">Color</th>
+				<th data-field="comments" class="w100">Comment</th>
+
+
+				<th data-field="dateacquired" class="w150">Date acquired</th>
+				
+				<th data-field="disposalreason" class="w130">Disposal reason</th>
+
+				<th data-field="gender" class="w100">Gender</th>
+
+				<th data-field="herdnumberlocation" class="w100">Herd#</th>
+				<th data-field="herdstatus" class="w130">Herd status</th>
+				<th data-field="hornstatus" class="w130">Horn status</th>
+				<th data-field="howacquired" class="w130">How acquired</th>
+				<th data-field="howconceived" class="w130">How conceived</th>
+				<th data-field="howdisposed" class="w130">How disposed</th>
+				<th data-field="includeinlookups" class="w130">Include in lookups</th>
+				<th data-field="managementcode" class="w130">Management code</th>
+				<th data-field="ownerID" class="w200">Owner ID</th>
+
+				<th data-field="registration" class="w130">Registration</th>
+				<th data-field="sex" class="w100">Sex</th>
+				<th data-field="species" class="w100">Species</th>
+				<th data-field="springfall" class="w130">Spring-fall</th>
+				<th data-field="status" class="w100">Status</th>
+				<th data-field="tattooleft" class="w130">Tattoo-left</th>
+				<th data-field="tattooright" class="w130">Tattoo-right</th>
+                <th data-field="email_id" class="w130">Email ID</th>
+                       
+				<!--<th data-field="pasturenumber">pasture number</th>
+				data-filter-control="input"
+				data-filter-control="select"
+				<th data-field="current_expt_no">current_expt_no</th>
+				<th data-sortable="true" data-field="Animal_ID" class="col-xs-4">Database ID</th>
+				<th data-field="sub_pasture">Sub pasture</th>
+				<th data-field="weight">weight</th>
+				<th data-field="currentframescore">currentframescore</th>
+				<th data-field="damframescore">damframescore</th>
+				<th data-field="Herd" class="w100" data-filter-control="select">Herd</th>
+				<th data-field="height">height</th>-->
+			</tr>
+		</thead>
+	</table>
+
+	<button type="button" class="btn btn-primary btn-lg" id="Edit" >Edit</button>
+	<button type="button" class="btn btn-danger btn-lg" id="Delete" >Delete</button>
+	<ul id="output"></ul>
+
+	<div class="modal fade" id="AnimalEditModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Edit this Animal?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <form class = "form-horizontal" style="margin-top:15px;">
+						<input type="text" name="Animal_Data" id="Animal_Data" value=""/>
+					  </form>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Animal_Add_Modal_Yes" class="btn btn-primary">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="AnimalDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Delete this Animal?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <fieldset disabled>
+				  <div class="modal-body">
+					  <h2 id="Delete_Animal"><h2>
+				  </div>
+			  </fieldset>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				<button type="button" id = "Delete_Yes" class="btn btn-primary" data-dismiss="modal">Yes</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="UploadCSVModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel" style="font-weight:bold; float:left;">Want to Upload CSV?</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float:right;">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<div class="container" style="min-height:100% width:80%">
+					<input type="file" style="padding-bottom:10px;" id="fileUpload"/>
+					<input type="button" id="upload" value="Upload" />
+				</div>
+				<div id="dvCSV"></div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id = "Upload_Done" class="btn btn-primary" data-dismiss="modal">Done?</button>
+			  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>
+	{% endblock %}
+
+{% block animal %} class="panel-collapse collapse in" {% endblock %}
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/animallist.js')}}"></script>{% endblock %}
+</body>
+</html>

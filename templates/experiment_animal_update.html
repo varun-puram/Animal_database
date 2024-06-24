@@ -1,0 +1,443 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Experiment Animal Update{% endblock %}</title>
+
+</head>
+<body>
+
+	{% block main %}
+	<h1 align="center" style="color:blue; font-weight:bold">Experiment Animal Update</h1>
+	<br>
+    <div class="row" style="position: relative;
+    left: 400px;">
+    	<div class="col-xs-12">
+    		<div class="col-xs-4">
+    			<input type="text" class="form-control" id="SearchAnimal" placeholder="Animal Name">
+    		</div>
+    		<button type="button" id="SearchButton" class="btn btn-primary">Search</button>
+
+    	</div>
+    </div>
+    <br><br>
+<form  method="post">
+    <div class="row">
+        <div class="col-xs-1"></div>
+<div class="form-group col-xs-10" align="left" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;"  >
+ <div class="row" style="padding-bottom:10px;">
+
+				   <div class="col-xs-6">
+				<label for="animalname" class="control-label col-xs-5">Animal Name</label>
+				<div class="col-xs-7">
+					<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
+				</div>
+				</div>
+
+				<div class="col-xs-6">
+
+				<label for="expt_name" class="control-label col-xs-5">Experiment Name</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="expt_name" placeholder="Experiment Name" disabled>
+		</div>
+		</div>
+				</div>
+				<br>
+
+<div class="row" style="padding-bottom:10px;">
+     <div class="col-xs-6">
+	<label for="dam" class="control-label col-xs-5">Dam</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="damexperiment" placeholder="Dam" disabled>
+		</div>
+		</div>
+		 <div class="col-xs-6">
+		<label for="sire" class="control-label col-xs-5">Sire</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="sireexperiment" placeholder="Sire" disabled>
+		</div>
+		</div>
+
+
+				</div>
+
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-xs-6">
+            <label for="height" class="col-xs-5 control-label">Height</label>
+            <div class="col-xs-7">
+                <input type="text" id="height" class="form-control" placeholder="Height">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label for="weight" class="col-xs-5 control-label">Weight</label>
+            <div class="col-xs-7">
+                <input type="text" id="weight" class="form-control" placeholder="Weight">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-xs-6">
+            <label for="currentframescore" class="col-xs-5 control-label">Current Frame Score</label>
+            <div class="col-xs-7">
+                <input type="text" id="currentframescore" class="form-control" placeholder="Current Frame Score">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label for="damframescore" class="col-xs-5 control-label">Dam Frame Score</label>
+            <div class="col-xs-7">
+                <input type="text" id="damframescore" class="form-control" placeholder="Dam Frame Score">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:10px;">
+        <div class="col-xs-6">
+            <label for="herd" class="col-xs-5 control-label">Herd</label>
+            <div class="col-xs-7">
+                <input type="text" id="herd" class="form-control" placeholder="Herd">
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label for="pasture_ID" class="col-xs-5 control-label">pasture_ID</label>
+            <div class="col-xs-7">
+                <input type="text" id="pasture_ID" class="form-control" placeholder="pasture_ID">
+            </div>
+        </div>
+    </div>
+     <div class="row" style="padding-bottom:10px;">
+        <label for="comments" class="col-xs-5 control-label">Comments</label>
+        <div class="col-xs-7">
+            <input type="text" id="comments" class="form-control" placeholder="Comments">
+        </div>
+    </div>
+			<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				<label for="birthweight" class="control-label col-xs-5">Birth Weight</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="birthweight" placeholder="Birth Weight">
+		</div>
+		</div>
+		<div class="col-xs-6">
+		<label for="birthweightadj" class="control-label col-xs-5">Birth Weight Adj</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="birthweightadj" placeholder="Birth Weight Adj">
+		</div>
+				</div>
+				</div>
+
+
+				<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				<label for="sireframescore" class="control-label col-xs-5">Sire Frame Score</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="sireframescore" placeholder="Sire Frame Score">
+		</div>
+		</div>
+		<div class="col-xs-6">
+			<label class="control-label col-xs-5" for="DOB">D.O.B :</label>
+				<div class="col-xs-7">
+				   <input class="date form-control" id="dobexperiment"  placeholder="YYYY-MM-DD" type="text">
+		</div>
+	</div>
+				</div>
+
+			<br>
+
+			<hr width="70%" size="8" align="center">
+			<br>
+
+		<div class="row" style="padding-bottom:10px;">
+		<div class="col-xs-6">
+			    <label for="bcsprevious" class="control-label col-xs-5">BCS Previous</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="bcsprevious" placeholder="BCS Previous">
+		</div>
+		</div>
+		<div class="col-xs-6">
+		<label for="bcsdifference" class="control-label col-xs-5">BCS Difference</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="bcsdifference" placeholder="BCS Difference">
+		</div>
+		</div>
+		</div>
+
+
+				<div class="row" style="padding-bottom:10px;">
+			    <div class="col-xs-6">
+				<label for="bcsrecent" class="control-label col-xs-5">BCS Recent Date</label>
+		<div class="col-xs-7">
+			<input class="date form-control" id="bcsrecent" name="date"  placeholder="YYYY-MM-DD" type="text">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="damwtatwean" class="control-label col-xs-5">Dam Wt at Wean</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="damwtatwean" placeholder="Dam Wt at Wean">
+				</div>
+				</div>
+			</div>
+
+
+			<div class= "row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="weanheight" class="control-label col-xs-5">Wean Height</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="weanheight" placeholder="Wean Height">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="weanweight" class="control-label col-xs-5">Wean Weight</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="weanweight" placeholder="Wean Weight">
+				</div>
+				</div>
+				</div>
+				<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+
+
+			<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label class="control-label col-xs-5" for="date">Wean Date</label>
+		<div class="col-xs-7">
+		   <input class="date form-control" id="weandate" size="15" placeholder="YYYY-MM-DD"type="text"/>
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="weangpd" class="col-xs-5 control-label">Wean GPD</label>
+		<div class="col-xs-7">
+			<input type="text" id="weangpd" class="form-control" placeholder="Wean GPD">
+				</div>
+				</div>
+				</div>
+
+
+			<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="weanhipht" class="col-xs-5 control-label">Wean Hip ht</label>
+		<div class="col-xs-7">
+			<input type="text" id="weanhipht" class="form-control" placeholder="Wean Hip ht">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label for="weanwda" class="col-xs-5 control-label">Wean WDA</label>
+		<div class="col-xs-7">
+			<input type="text" id="weanwda" class="form-control" placeholder="Wean WDA">
+				</div>
+				</div>
+				</div>
+
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="weanweightdate" class="col-xs-5 control-label">Wean Weight Date</label>
+		<div class="col-xs-7">
+		   <input class="date form-control" id="weanweightdate"  placeholder="YYYY-MM-DD" type="text"/>
+				</div>
+			</div>
+		     <div class="col-xs-6">
+				<label for="adjustedweight" class="col-xs-5 control-label">Adj 205d weight</label>
+			<div class="col-xs-7">
+				<input type="text" id="adj205w" class="form-control" placeholder="Adjusted Weight">
+				</div>
+				</div>
+				</div>
+	<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+
+
+				<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="adjusted_height" class="col-xs-5 control-label">Adj 205d height</label>
+			<div class="col-xs-7">
+				<input type="text" id="adj205h" class="form-control" placeholder="Adjusted Height">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="weanframescore" class="col-xs-5 control-label">Wean Frame Score</label>
+			<div class="col-xs-7">
+				<input type="text" id="weanframescore" class="form-control" placeholder="Wean Frame Score">
+				</div>
+				</div>
+				</div>
+
+
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="agewean" class="col-xs-5 control-label">Age at Wean</label>
+			<div class="col-xs-7">
+				<input type="text" id="ageatwean" class="form-control" placeholder="Age at Wean">
+				</div>
+			</div>
+		 <div class="col-xs-6">
+				<label for="yearlingweight" class="control-label col-xs-5">Yearling Weight</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="yearlingweight" placeholder="Yearling Weight">
+				</div>
+				</div>
+				</div>
+
+
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+					<label for="yearlingheight" class="control-label col-xs-5">Yearling Height</label>
+		<div class="col-xs-7">
+			<input type="text" class="form-control" id="yearlingheight" placeholder="Yearling Height">
+				</div>
+				</div>
+				 <div class="col-xs-6">
+				<label class="control-label col-xs-5" for="date">Yearling Date</label>
+		<div class="col-xs-7">
+		   <input class="date form-control" id="yearlingdate"  placeholder="YYYY-MM-DD" type="text"/>
+				</div>
+				</div>
+				</div>
+				<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+
+
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="adjustedyearlingweight" class="col-xs-5 control-label">Adj Yearling weight</label>
+			<div class="col-xs-7">
+				<input type="text" id="adjyearlingw" class="form-control" placeholder="Adjusted Yearling Weight">
+				</div>
+			</div>
+		     <div class="col-xs-6">
+				<label for="adjustedyearlingheight" class="col-xs-5 control-label">Adj Yearling height</label>
+			<div class="col-xs-7">
+				<input type="text" id="adjyearlingh" class="form-control" placeholder="Adjusted Yearling Height">
+				</div>
+				</div>
+				</div>
+
+
+<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="yearlingframescore" class="col-xs-5 control-label">Yearling Frame Score</label>
+			<div class="col-xs-7">
+				<input type="text" id="yearlingframescore" class="form-control" placeholder="Yearling Frame Score">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="ageyearling" class="col-xs-5 control-label">Age at Yearling</label>
+			<div class="col-xs-7">
+				<input type="text" id="ageatyearling" class="form-control" placeholder="Age at Yearling">
+				</div>
+			</div>
+			</div>
+
+
+		<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="currentwtcow" class="col-xs-5 control-label">Current Wt Cow</label>
+		<div class="col-xs-7">
+			<input type="text" id="currentwtcow" class="form-control" placeholder="Current Wt Cow">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="adj365dht" class="col-xs-5 control-label">Adj 365d Height</label>
+		<div class="col-xs-7">
+			<input type="text" id="adj365dht" class="form-control" placeholder="Adj 365d Height">
+				</div>
+				</div>
+				</div>
+					<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+
+
+			<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="customweight" class="col-xs-5 control-label">Custom Weight</label>
+		<div class="col-xs-7">
+			<input type="text" id="customweight" class="form-control" placeholder="Custom Weight">
+				</div>
+
+			</div>
+			<div class="col-xs-6">
+					<label class="control-label col-xs-5" for="date">Custom Weight Date</label>
+		<div class="col-xs-7">
+		   <input class="date form-control" id="customweightdate" placeholder="YYYY-MM-DD" type="text"/>
+				</div>
+				</div>
+				</div>
+
+
+					<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="currentwtheifer" class="col-xs-5 control-label">Current Wt Heifer</label>
+		<div class="col-xs-7">
+			<input type="text" id="currentwtheifer" class="form-control" placeholder="Current Wt Heifer">
+				</div>
+				</div>
+			     <div class="col-xs-6">
+				<label for="customheight" class="col-xs-5 control-label">Custom Height</label>
+		<div class="col-xs-7">
+			<input type="text" id="customheight" class="form-control" placeholder="Custom Height">
+				</div>
+			</div>
+			</div>
+
+
+			   	<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+					<label class="control-label col-xs-5" for="customheightdate">Custom Height Date</label>
+		<div class="col-xs-7">
+		   <input class="date form-control" id="customheightdate"  placeholder="YYYY-MM-DD" type="text"/>
+				</div>
+				</div>
+			     <div class="col-xs-6">
+					<label for="backfat" class="col-xs-5 control-label">Back Fat</label>
+		<div class="col-xs-7">
+			<input type="text" id="backfat" class="form-control" placeholder="Back Fat">
+				</div>
+				</div>
+				</div>
+				<br>
+			<hr width="70%" size="3" align="center">
+			<br>
+
+
+				<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="treatment" class="col-xs-5 control-label">Treatment</label>
+		<div class="col-xs-7">
+		  <select class="form-control" id="treatment">
+			<option></option>
+			<option>Steer</option>
+			<option>Heifer</option>
+			<option>Bull</option>
+			<option>Cow</option>
+		  </select>
+				</div>
+				</div>
+			    <div class="col-xs-6">
+				<label for="blockpen" class="col-xs-5 control-label">Block/Pen</label>
+		<div class="col-xs-7">
+			<input type="text" id="blockpen" class="form-control" placeholder="Block/Pen">
+				</div>
+			</div>
+			</div>
+
+			    	<div class="row" style="padding-bottom:10px;">
+			     <div class="col-xs-6">
+				<label for="replicate" class="col-xs-5 control-label">Replicate</label>
+		<div class="col-xs-7">
+			<input type="text" id="replicate" class="form-control" placeholder="Replicate">
+				</div>
+				</div>
+				</div>
+
+			</div>
+			</div>
+			</form>
+<div class="col-xs-12" style="margin:20px" align="center"><button type="button" class="btn btn-primary btn-lg" id="Update_experiment_animal">Submit</button></div>
+	{% endblock %}
+
+{% block experiment %} class="panel-collapse collapse in" {% endblock %}
+
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experiment_animal_update_scripts.js')}}"></script> {% endblock %}
+
+</body>
+</html>

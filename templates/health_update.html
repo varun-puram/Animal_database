@@ -1,0 +1,75 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Health Update{% endblock %}</title>
+<style>
+.label{
+        width:100%;
+		padding-right: 2px;
+    }
+.input{
+		width:100%;
+}
+</style>
+</head>
+<body>
+
+{% block main %}
+<h1 align="center" style="color:blue; font-weight:bold">Update Health</h1>
+<div class="container">
+	<button type="button" class="btn btn-primary">Update</button>
+	<div class="form-group">
+		<label for="animalname" class="control-label col-xs-1">Animal Name</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="animalname" placeholder="Animal Name">
+		</div>
+		<label for="create_date" class="control-label col-xs-1">Create Date</label>
+		<div class="input-group col-xs-2">
+		   <input class="date" id="create_date" name="create_date" placeholder="YYYY-MM-DD" type="text"/>
+		</div>
+	</div>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="Medical_ID" class="control-label col-xs-1">Medicine</label>
+		<div class="col-xs-2">
+		  <select class="form-control" id="Medical_ID"></select>
+		</div>
+		<label for="location" class="control-label col-xs-1">Location</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="location" placeholder="Location">
+		</div>
+	</div>
+	<br>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+        <div class="col-xs-12">
+            <textarea class="form-control" rows="6" id="medical_notes" placeholder="Medical Notes" required></textarea>
+        </div>
+	</div>
+	<br>
+	<hr width="50%" size="3" align="center">
+	<div class="form-group">
+		<label for="Amt_given" class="control-label col-xs-1">Amount Given</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="Amt_given" placeholder="Amount Given">
+		</div>
+		<label for="route" class="control-label col-xs-1">Route</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="route" placeholder="Route">
+		</div>
+		<label for="water_feed" class="control-label col-xs-1">Water/Feed</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="water_feed" placeholder="Water/Feed">
+		</div>
+		<label for="withdraw_time" class="control-label col-xs-1">Withdraw Time</label>
+		<div class="col-xs-2">
+			<input type="text" class="form-control" id="withdraw_time" placeholder="Withdraw Time">
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block HealthRecords %} class="panel-collapse collapse in" {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends "tempheader.html" %}
+
+<html>
+<head><title>{% block title %}Add Experiment{% endblock %}</title></head>
+<body>
+
+	{% block main %}
+		<div class="container">
+	<div id="Notification area"></div>
+	<h1 align="center" style="color: blue;">Create new experiment</h1>
+	<br>
+	<h5 style="font-weight:bold"> Note: Select the herd which is created before,choose the attributes required for the experiment and then click Create.</h5>
+	<br>
+
+		<div class="row-fluid">
+			<div class="col-xs-12" style="background-color:#E3E3AB; border-radius: 25px; padding:20px; border: 5px solid black;">
+				<div style="margin-bottom:100px;">
+					<form>
+						<div class="row">
+							<label for="name" class="control-label col-xs-3" align="right" style="padding:10px;">Herd Name</label>
+							<div class="col-xs-5">
+								<select class="form-control" id="name"></select>
+							</div>
+							<button type="button" id="create_experiment" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Create</button>
+						</div>
+						<br>
+						<div class="row" align="center">
+						    <input type="checkbox"  class="selectallexperiment">Select All<br>
+						</div>
+						<br>
+						<div class="row">
+    						<div class="col-xs-4" >
+    							<input type="checkbox" class="groupaddinput3" id="sireframescore" value="input-sireframescore-Sire Frame Score">Sire Frame Score<br>
+    							<input type="checkbox" class="groupaddinput3" id="weanheight" value="input-weanheight-Wean Height">Wean Height<br>
+    							<input type="checkbox" class="groupaddinput3" id="weanweight" value="input-weanweight-Wean Weight">Wean Weight<br>
+    							<input type="checkbox" class="groupaddinput3" id="weandate" value="date-weandate-Wean Date">Wean Date<br>
+    							<input type="checkbox" class="groupaddinput3" id="birthweight" value="input-birthweight-Birth Weight">Birth Weight<br>
+    							<input type="checkbox" class="groupaddinput3" id="yearlingheight" value="input-yearlingheight-Yearling Height">Yearling Height<br>
+    							<input type="checkbox" class="groupaddinput3" id="yearlingweight" value="input-yearlingweight-Yearling Weight">Yearling Weight<br>
+    							<input type="checkbox" class="groupaddinput3" id="yearlingdate" value="date-yearlingdate-Yearling Date">Yearling Date<br>
+    						</div>
+    						<div class="col-xs-4">
+    						    <input type="checkbox" class="groupaddinput3" id="customweight" value="input-customweight-Custom Weight">Custom Weight<br>
+    							<input type="checkbox" class="groupaddinput3" id="customweightdate" value="date-customweightdate-Custom Weight Date">Custom Weight Date<br>
+    							<input type="checkbox" class="groupaddinput3" id="customheight" value="input-customheight-Custom Height">Custom Height<br>
+    							<input type="checkbox" class="groupaddinput3" id="customheightdate" value="date-customheightdate-Custom Height Date">Custom Height Date<br>
+    							<input type="checkbox" class="groupaddinput3" id="blockpen" value="input-blockpen-Block/Pen">Block/Pen<br>
+    							<input type="checkbox" class="groupaddinput3" id="replicate" value="input-replicate-Replicate">Replicate<br>
+    							<input type="checkbox" class="groupaddinput3" id="backfat" value="input-backfat-Back Fate">Back Fat<br>
+    							<input type="checkbox" class="groupaddinput3" id="treatment" value="input-treatment-Treatment">Treatment<br>
+    						</div>
+    						<div class="col-xs-4">
+    						    <input type="checkbox" class="groupaddinput3" id="adj205w" value="input-adj205w-Adjusted 205 Weight">Adjusted 205 Weight<br>
+    							<input type="checkbox" class="groupaddinput3" id="adj205h" value="input-adj205h-Adjusted 205 Height">Adjusted 205 Height<br>
+    							<input type="checkbox" class="groupaddinput3" id="weanframescore" value="input-weanframescore-Wean Frame Score">Wean Frame Score<br>
+    							<input type="checkbox" class="groupaddinput3" id="ageatwean" value="input-ageatwean-Age at Wean">Age at Wean<br>
+    							<input type="checkbox" class="groupaddinput3" id="adjyearlingw" value="input-adjyearlingw-Adj Yearling Weight">Adj Yearling Weight<br>
+    							<input type="checkbox" class="groupaddinput3" id="adjyearlingh" value="input-adjyearlingh-Adj Yearling Height">Adj Yearling Height<br>
+    							<input type="checkbox" class="groupaddinput3" id="yearlingframescore" value="input-yearlingframescore-Yearling Frame Score">Yearling Frame Score<br>
+    							<input type="checkbox" class="groupaddinput3" id="ageatyearling" value="input-ageatyearling-Age at Yearling">Age at Yearling<br>
+    						</div>
+    					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom:30px"></div>
+	</div>
+
+
+	{% endblock %}
+
+{% block experiment %} class="panel-collapse collapse in" {% endblock %}
+
+{% block imports %} <script type = "text/javascript" src="{{url_for('static', filename= 'js/experimentadd_scripts.js')}}"></script> {% endblock %}
+
+</body>
+</html>
